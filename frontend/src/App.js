@@ -1,13 +1,17 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
-import { Home, Auth } from './pages';
+import { Home, Login, Join } from './pages';
+import { Header } from './components';
+import './scss/main.scss';
 
 function App() {
 	return (
 		<Grid className="app">
-			<Route exact path="/" component={Home} />
-			<Route exact path="/auth" component={Auth} />
+			<Header />
+			<Route path="/" component={Home} />
+			<Route path="/login" component={Login} />
+			<Route path="/join" component={Join} />
 		</Grid>
 	);
 }
