@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, Typography } from '@material-ui/core';
 import TitleImg from './styles/title_icon.jpg';
 
 const Header = () => {
