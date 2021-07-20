@@ -10,12 +10,7 @@ const Header = () => {
 				<Link to="/">
 					<Button>
 						<Grid className="header-img">
-							<img
-								src={TitleImg}
-								width="50"
-								height="50"
-								alt="title"
-							/>
+							<img src={TitleImg} width="50" height="50" alt="title" />
 						</Grid>
 						<Grid container direction="row" className="header-icon">
 							<Grid className="title-y">독</Grid>
@@ -32,7 +27,7 @@ const Header = () => {
 				</Link>
 				<Grid className="menu-line" />
 				<Link to="/report">
-					<Button>회원가입</Button>
+					<Button>독후감</Button>
 				</Link>
 				<Grid className="menu-line" />
 				<Link to="/calendar">
