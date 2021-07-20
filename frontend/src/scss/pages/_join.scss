@@ -1,4 +1,22 @@
 .join {
-  width: 100%;
-  height: 100%;
+  margin-top: 8px;
+  display: flex;
+  position: relative;
+  left: 0px;
+  top: 0px;
+  flex-direction: column;
+  align-items: center;
+  .avatar {
+    margin: 1px;
+    background-color: grey;
+  }
+  .form {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .submit {
+    margin-top: 15px;
+    background-color: $yellow;
+  }
 }

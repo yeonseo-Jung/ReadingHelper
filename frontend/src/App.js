@@ -6,14 +6,14 @@ import { Header } from './components';
 import './scss/main.scss';
 
 function App() {
-	return (
-		<Grid className="app">
-			<Header />
-			<Route path="/" component={Home} />
-			<Route path="/login" component={Login} />
-			<Route path="/join" component={Join} />
-		</Grid>
-	);
+  return (
+    <Grid className="app">
+      <Header />
+      <Route path="/" component={Home} exact />
+      <Route path="/login" component={Login} />
+      <Route path="/join" component={Join} />
+    </Grid>
+  );
 }
 
 export default App;
