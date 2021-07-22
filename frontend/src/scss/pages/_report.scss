@@ -1,0 +1,38 @@
+.report {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  .report-container {
+    width: 60%;
+    .report-typo {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .report-line {
+      margin: 0 0 10px 0;
+      width: 100%;
+      border-bottom: 2.5px double $yellow;
+    }
+    .report-grid {
+      margin-top: 20px;
+    }
+
+    .report-name {
+      margin-top: 10px;
+      font-weight: 800;
+    }
+    .report-paper {
+      width: 230px;
+      height: 230px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      .image {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
