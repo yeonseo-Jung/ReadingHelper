@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Button, Typography } from '@material-ui/core';
+import FaceIcon from '@material-ui/icons/Face';
 import TitleImg from './styles/title_icon.jpg';
 
 const Header = () => {
+	const styles = {
+		borderRadius: 20,
+		backgroundColor: '#fdd45a',
+		color: '#ffffff',
+	};
 	return (
 		<Grid container className="header">
 			<Grid className="header-title">
@@ -35,25 +41,16 @@ const Header = () => {
 				</Link>
 			</Grid>
 			<Grid className="header-buttons">
+				<Link to="/mypage">
+					<Button startIcon={<FaceIcon className="header-mypage" />} />
+				</Link>
 				<Link to="/login">
-					<Button
-						style={{
-							borderRadius: 20,
-							backgroundColor: '#fdd45a',
-						}}
-						variant="contained"
-					>
+					<Button style={styles} variant="contained">
 						로그인
 					</Button>
 				</Link>
-				<Link to="join">
-					<Button
-						style={{
-							borderRadius: 20,
-							backgroundColor: '#fdd45a',
-						}}
-						variant="contained"
-					>
+				<Link to="/join">
+					<Button style={styles} variant="contained">
 						회원가입
 					</Button>
 				</Link>
