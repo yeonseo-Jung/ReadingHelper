@@ -1,0 +1,28 @@
+.bookInfo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .bookCover{
+        width:40%;
+        height:70%;
+    }
+
+    .binfo-des{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        padding: 0 20px 0 20px;
+        .info {
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px dashed $grey;
+            align-items: center;
+            margin: 20px 0 20px 0px;
+            .info-text {
+              font-size: 1.2rem;
+              margin-left: 10px;
+            }
+        }
+    }
+}

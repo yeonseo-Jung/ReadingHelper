@@ -5,3 +5,6 @@ export { default as MyPage } from './MyPage';
 export { default as Report } from './Report';
 export { default as ReportInfo } from './ReportInfo';
 export { default as UserEdit } from './UserEdit';
+export { default as MyLibrary } from './MyLibrary';
+export { default as BookCalendar } from './BookCalendar';
+export { default as BookInfo } from './BookInfo';
