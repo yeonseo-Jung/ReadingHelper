@@ -17,36 +17,25 @@
             width: 100%;
             .bookCard{
                 margin-top: 20px;
-
-                .bookSection{
-                    height: 100%;
-                    padding-top: 20px;
+    
+                .bookcard-paper{
+                    width: 230px;
+                    height: 230px;
                     display: flex;
                     flex-direction: column;
+                    justify-content: center;
                     align-items: center;
-                    .bookImage{
-                        width:60%;
+                    text-align: center;
+                    .image {
+                        width: 60%;
                         height:80%;
+                        display: flex;
+                        justify-content: center;
                     }
-                    .bookCardContent{
+                    .binfo-typo{
                         display: flex;
                         flex-direction: column;
-                        .bauthor{
-                            margin-top: 5px;
-                        }
                     }
-                    .buttons{
-                        display: flex;
-                        margin-top: 20px;
-                        .btnDelete{
-                            display: flex;
-                            color: #2699FB;
-                        }
-                        .btnWriteBR{
-                            color: #707070;                    
-                        }
-                    }
-                    
                 }
             }
         }
