@@ -1,0 +1,56 @@
+.mylibrary{
+    margin-top: 30px;
+    .mylibrary-container{
+        width: 60%;
+        .library-typo {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-bottom: 10px;
+          }
+          .library-line {
+            margin: 0 0 10px 0;
+            width: 100%;
+            border-bottom: 2.5px double $yellow;
+          }
+        .booklist{
+            width: 100%;
+            .bookCard{
+                margin-top: 20px;
+
+                .bookSection{
+                    height: 100%;
+                    padding-top: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    .bookImage{
+                        width:60%;
+                        height:80%;
+                    }
+                    .bookCardContent{
+                        display: flex;
+                        flex-direction: column;
+                        .bauthor{
+                            margin-top: 5px;
+                        }
+                    }
+                    .buttons{
+                        display: flex;
+                        margin-top: 20px;
+                        .btnDelete{
+                            display: flex;
+                            color: #2699FB;
+                        }
+                        .btnWriteBR{
+                            color: #707070;                    
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    
+}
