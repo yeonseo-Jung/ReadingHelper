@@ -1,9 +1,7 @@
 import React from 'react';
-import { Grid, Button, Paper } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import ArtTrackIcon from '@material-ui/icons/ArtTrack';
+import { Grid } from '@material-ui/core';
+import BookList from '../components/BookList';
+import SubHeader from '../components/SubHeader';
 
 const itemData = [
 	{
@@ -72,32 +70,8 @@ function MyLibrary() {
 	return (
 		<Grid align="center" className="mylibrary">
 			<Grid align="center" className="mylibrary-container">
-				<Grid container className="library-typo">
-					OO 님의 서재
-				</Grid>
-				<Grid className="library-line" />
-				<Grid container spacing={2} className="booklist" align="center">
-					{itemData.map((item) => (
-						<Grid item xs={4} className="bookCard">
-							<Link
-								to={{
-									pathname: `/book_info/${item.id}`,
-									state: item,
-								}}
-							>
-								<Button>
-									<Paper className="bookcard-paper">
-										<img className="image" src={item.img} alt="title" />
-										<Grid container className="binfo-typo">
-											<Grid>{item.title}</Grid>
-											<Grid>{item.author}</Grid>
-										</Grid>
-									</Paper>
-								</Button>
-							</Link>
-						</Grid>
-					))}
-				</Grid>
+				<SubHeader name="내 서재" />
+				<BookList itemData={itemData} path="/book_info/" />
 			</Grid>
 		</Grid>
 	);
