@@ -3,6 +3,7 @@ import { Grid, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import SubHeader from '../components/SubHeader';
 import BookList from '../components/BookList';
+import { RoundButton } from '../components';
 
 const itemData = [
 	{
@@ -48,22 +49,9 @@ function Report() {
 			<Grid align="center" className="report-container">
 				<SubHeader name="독후감" />
 				<BookList itemData={itemData} path="/report/" />
-				<Link
-					to={{
-						pathname: '/report/edit',
-					}}
-				>
-					<Button
-						style={{
-							borderRadius: 20,
-							backgroundColor: '#fdd45a',
-							color: '#ffffff',
-						}}
-						variant="contained"
-					>
-						작성
-					</Button>
-				</Link>
+				<Grid align="end">
+					<RoundButton text="작성" />
+				</Grid>
 			</Grid>
 		</Grid>
 	);

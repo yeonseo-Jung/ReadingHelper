@@ -3,6 +3,7 @@ import { Grid, Paper, Button, TextField } from '@material-ui/core';
 import useReactRouter from 'use-react-router';
 import { Link } from 'react-router-dom';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
+import { RoundButton } from '../components';
 
 function ReportWrite() {
 	const { location } = useReactRouter();
@@ -15,11 +16,6 @@ function ReportWrite() {
 			fontSize: 18,
 			fontWeight: 'bold',
 			borderRadius: 20,
-		},
-		button: {
-			borderRadius: 20,
-			backgroundColor: '#fdd45a',
-			color: '#ffffff',
 		},
 	};
 	return (
@@ -50,9 +46,7 @@ function ReportWrite() {
 								state: location.state,
 							}}
 						>
-							<Button style={styles.button} variant="contained">
-								확인
-							</Button>
+							<RoundButton text="확인" />
 						</Link>
 					</Grid>
 				</Grid>
