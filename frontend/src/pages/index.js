@@ -9,3 +9,4 @@ export { default as UserEdit } from './UserEdit';
 export { default as MyLibrary } from './MyLibrary';
 export { default as BookCalendar } from './BookCalendar';
 export { default as BookInfo } from './BookInfo';
+export { default as Search } from './Search';

@@ -13,6 +13,7 @@ import {
 	MyLibrary,
 	BookCalendar,
 	BookInfo,
+	Search,
 } from './pages';
 import { Header } from './components';
 import './scss/main.scss';
@@ -34,6 +35,7 @@ function App() {
 			<Route exact path="/mylib" component={MyLibrary} />
 			<Route exact path="/book_info/:id" component={BookInfo} />
 			<Route path="/calendar" component={BookCalendar} />
+			<Route path="/search" component={Search} />
 		</Grid>
 	);
 }
