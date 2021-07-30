@@ -1,45 +1,6 @@
-.mylibrary{
-    margin-top: 30px;
-    .mylibrary-container{
-        width: 60%;
-        .library-typo {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-top: 10px;
-            margin-bottom: 10px;
-          }
-          .library-line {
-            margin: 0 0 10px 0;
-            width: 100%;
-            border-bottom: 2.5px double $yellow;
-          }
-        .booklist{
-            width: 100%;
-            .bookCard{
-                margin-top: 20px;
-    
-                .bookcard-paper{
-                    width: 230px;
-                    height: 230px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    text-align: center;
-                    .image {
-                        width: 60%;
-                        height:80%;
-                        display: flex;
-                        justify-content: center;
-                    }
-                    .binfo-typo{
-                        display: flex;
-                        flex-direction: column;
-                    }
-                }
-            }
-        }
-    }
-    
-    
+.mylibrary {
+  margin-top: 30px;
+  .mylibrary-container {
+    width: 60%;
+  }
 }

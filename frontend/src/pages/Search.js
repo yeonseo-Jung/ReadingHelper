@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import BookList from '../components/BookList';
 import SubHeader from '../components/SubHeader';
+import SearchBar from '../components/SearchBar';
 
 const itemData = [
 	{
@@ -66,14 +67,15 @@ const itemData = [
 	},
 ];
 
-function MyLibrary() {
+function Search() {
 	return (
 		<Grid align="center" className="mylibrary">
 			<Grid align="center" className="mylibrary-container">
-				<SubHeader name="내 서재" />
+				<SearchBar title={itemData[0].title} />
+				<SubHeader name="도서 검색" />
 				<BookList itemData={itemData} path="/book_info/" />
 			</Grid>
 		</Grid>
 	);
 }
-export default MyLibrary;
+export default Search;
