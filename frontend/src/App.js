@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import {
@@ -19,6 +19,15 @@ import { Header } from './components';
 import './scss/main.scss';
 
 function App() {
+	const [message, setMessage] = useState('');
+
+	useEffect(() => {
+		fetch('/api/hello')
+			.then((response) => response.text())
+			.then((m) => {
+				setMessage(message);
+			});
+	}, []);
 	return (
 		<Grid className="app">
 			<Header />
