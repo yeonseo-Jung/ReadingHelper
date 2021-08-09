@@ -17,16 +17,15 @@ import {
 } from './pages';
 import { Header } from './components';
 import './scss/main.scss';
+import customAxios from './customAxios';
 
 function App() {
-	const [message, setMessage] = useState('');
-
+	const [item, setItem] = useState('');
+	const callback = (data) => {
+		setItem(data);
+	};
 	useEffect(() => {
-		fetch('/api/hello')
-			.then((response) => response.text())
-			.then((m) => {
-				setMessage(message);
-			});
+		customAxios('/1', callback);
 	}, []);
 	return (
 		<Grid className="app">
