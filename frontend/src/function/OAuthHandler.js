@@ -1,11 +1,11 @@
+/* eslint-disable react/jsx-indent */
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import { history } from 'react-dom';
+import { useHistory } from 'react-router-dom';
 import { LoadSpinner } from '../components';
+import { CLIENT_ID, REDIRECT_URI } from './OAuth';
 
 function requestToken(code) {
-	const JS_APP_KEY = '8c11f2500a76e9aeaf3d42141179f84c';
-	const REDIRECT_URI = 'http://localhost:8080/login/callback/kakao';
 	const makeFormData = (params) => {
 		const searchParams = new URLSearchParams();
 		Object.keys(params).forEach((key) => {
@@ -14,7 +14,7 @@ function requestToken(code) {
 
 		return searchParams;
 	};
-
+	// js key와 redirect uri를 통해 백엔드에 토큰 요청
 	return axios({
 		method: 'POST',
 		headers: {
@@ -23,7 +23,7 @@ function requestToken(code) {
 		url: 'https://kauth.kakao.com/oauth/token',
 		data: makeFormData({
 			grant_type: 'authorization_code',
-			client_id: JS_APP_KEY,
+			client_id: CLIENT_ID,
 			redirect_uri: REDIRECT_URI,
 			code,
 		}),
@@ -31,15 +31,20 @@ function requestToken(code) {
 }
 
 const OAuthHandler = (props) => {
+	const history = useHistory();
 	const url = new URL(window.location.href);
 	const authorizationCode = url.searchParams.get('code');
+	// 인가 코드 받은 후
 	if (authorizationCode) {
+		// 백엔드에 토큰 요청
 		requestToken(authorizationCode)
 			.then(({ data }) => {
 				console.log('requestToken:', data);
+				history.push('/');
+				alert('로그인에 성공했습니다.');
 			})
 			.catch((err) => {
-				console.error('requestToken:', err);
+				console.error('requestToken error:', err);
 			});
 	}
 
