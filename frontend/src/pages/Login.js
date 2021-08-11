@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,7 @@ import LoginImg from '../components/styles/login_character.jpeg';
 import KaKaoIcon from '../components/styles/kakao_icon.png';
 import NaverIcon from '../components/styles/naver_icon.png';
 import { KAKAO_AUTH_URL } from '../function';
+import { NaverButton } from '../components';
 
 function Login() {
 	return (
@@ -58,12 +59,10 @@ function Login() {
 				</Grid>
 				<Grid className="accounts">
 					<Button variant="contained" className="btnAccount" href={KAKAO_AUTH_URL}>
-						<img src={KaKaoIcon} width="30" height="30" alt="kakao" className="accountIcon" />
-						카카오톡
+						<img src={KaKaoIcon} height="30" alt="kakao" className="accountIcon" />
 					</Button>
-					<Button variant="contained" className="btnAccount">
-						<img src={NaverIcon} width="30" height="30" alt="naver" className="accountIcon" />
-						네이버
+					<Button id="naverIdLogin" variant="contained" className="btnAccount">
+						<NaverButton />
 					</Button>
 				</Grid>
 			</div>
