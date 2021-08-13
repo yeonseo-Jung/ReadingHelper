@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { LoadSpinner } from '../components';
 import RequestHandler from './RequestHandler';
 
-const KakaoHandler = () => {
+const KakaoHandler = ({ getUserInfo }) => {
 	const history = useHistory();
 	const url = new URL(window.location.href);
 	const authorizationCode = url.searchParams.get('code');
@@ -24,6 +24,7 @@ const KakaoHandler = () => {
 						}
 					*/
 					alert(`☆${res.data.nickname}★님 환영합니다!!!!!!!!`);
+					getUserInfo(res.data);
 					setTimeout(() => {
 						history.push('/');
 					}, 500);

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { LoadSpinner } from '../components';
 import RequestHandler from './RequestHandler';
 
-function NaverHandler() {
+function NaverHandler({ getUserInfo }) {
 	const history = useHistory();
 	const url = new URL(window.location.href);
 	// 인가 코드
@@ -17,6 +17,7 @@ function NaverHandler() {
 				.then((res) => {
 					console.log('requestToken:', res.data);
 					alert('로그인에 성공했습니다.');
+					getUserInfo(res.data);
 					/*
 						res.data =
 						{
