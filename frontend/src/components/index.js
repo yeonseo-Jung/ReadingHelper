@@ -6,4 +6,3 @@ export { default as SubHeader } from './SubHeader';
 export { default as RoundButton } from './RoundButton';
 export { default as SearchBar } from './SearchBar';
 export { default as LoadSpinner } from './LoadSpinner';
-export { default as NaverButton } from './NaverButton';
