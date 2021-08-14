@@ -4,7 +4,7 @@ import useReactRouter from 'use-react-router';
 
 function BookInfo(props) {
 	const { location } = useReactRouter();
-	const imgurl = location.state.img;
+	const imgurl = location.state.thumbnail;
 	const { title } = location.state;
 
 	return (

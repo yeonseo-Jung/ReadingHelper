@@ -1,79 +1,121 @@
-import React from 'react';
-import { Grid } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { Button, Grid } from '@material-ui/core';
+import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import { parse } from 'query-string';
 import BookList from '../components/BookList';
 import SubHeader from '../components/SubHeader';
 import SearchBar from '../components/SearchBar';
 
-const itemData = [
-	{
-		id: 1,
-		img: 'https://cdn.pixabay.com/photo/2018/01/10/23/53/rabbit-3075088_960_720.png',
-		title: '토끼의 하루',
-		author: 'dok2',
-	},
-	{
-		id: 2,
-		img: 'https://www.fashionn.com/files/board/2015/image/p19r7o9qe1av7a681aapaaj1com1.jpg',
-		title: '인사이드 아웃',
-		author: '기쁨이',
-	},
-	{
-		id: 3,
-		img: 'http://image.kyobobook.co.kr/images/book/xlarge/453/x9788967356453.jpg',
-		title: '심슨 가족이 사는 법',
-		author: '@Simpsons',
-	},
-	{
-		id: 4,
-		img: 'http://image.kyobobook.co.kr/images/book/xlarge/018/x9791190090018.jpg',
-		title: '우리가 빛의 속도로 갈 수 없다면',
-		author: '김연수',
-	},
-	{
-		id: 5,
-		img: 'https://www.readersnews.com/news/photo/202009/100406_67647_654.jpg',
-		title: '달러구트 꿈 백화점',
-		author: '이미예',
-	},
-	{
-		id: 6,
-		img: 'http://image.kyobobook.co.kr/images/book/xlarge/596/x9791187192596.jpg',
-		title: '어린왕자',
-		author: '생택쥐베리',
-	},
-	{
-		id: 7,
-		img: 'https://image.aladin.co.kr/product/788/3/cover500/8958284870_1.jpg',
-		title: '누가 내 머리에 똥 쌌어?',
-		author: 'who',
-	},
-	{
-		id: 8,
-		img: 'https://img.hankyung.com/photo/201603/BA.11350864.1.jpg',
-		title: '주토피아',
-		author: '@joody',
-	},
-	{
-		id: 9,
-		img: 'http://img2.tmon.kr/cdn3/deals/2020/06/03/3656253742/original_3656253742_front_e6213_1591150707production.jpg',
-		title: '흥부와 놀부',
-		author: 'heungbuandnolbu',
-	},
-	{
-		id: 10,
-		img: 'https://www.puzzlesarang.com/shop/data/goods/1563264794714m0.jpg',
-		title: '신데렐라',
-		author: 'cinderella',
-	},
-];
-
 function Search() {
+	const [itemData, setItemData] = useState();
+	const [title, setTitle] = useState('');
+	const [currentPage, setCurrentPage] = useState(1);
+	const loc = useLocation();
+	console.log(loc.search);
+	useEffect(() => {
+		if (loc.search !== '') {
+			// const st = loc.state;
+			console.log(`loc : ${loc}`);
+
+			console.log(`url 정보 : ${loc.search}`);
+
+			const keyw = loc.search.split('=');
+			setTitle(keyw[1]);
+			console.log(`전달받은 제목 : ${keyw[1]}`);
+			const re = loc.state;
+			console.log('result 값');
+			console.log(re.result);
+			setItemData(re.result);
+		}
+		// const { query } = parse(useLocation().search);
+		// console.log(query);
+
+		/*
+		if (st === undefined) {
+			console.log('undefined');
+		} else {
+			setItemData(st[1]);
+			setTitle(st[0]);
+			console.log(`전달받은 itemData : ${st[1]}`);
+			console.log(loc.search);
+			console.log(`전달받은 itemData : ${st}`);
+		} */
+	}, [loc.search]);
+
+	// console.log(`전달받은 itemData : ${itemData}`);
+
+	useEffect(() => {
+		async function updatePage() {
+			try {
+				console.log(`현재 페이지 번호 : ${currentPage}`);
+				const result = await axios.get('/search', {
+					params: { query: title, pageNum: currentPage },
+				});
+				const re = result.data;
+				console.log(`${currentPage}페이지 내용 : ${re.documents}`);
+				setItemData(re.documents);
+			} catch (e) {
+				console.log(e);
+			}
+		}
+		updatePage();
+	}, [currentPage]);
+
+	const movePage = async (num) => {
+		if (!(currentPage === 1 && num === -1)) {
+			setCurrentPage(currentPage + num);
+		}
+		// try {
+		// 	console.log(`현재 페이지 번호 : ${currentPage}`);
+		// 	const result = await axios.get('/search', {
+		// 		params: { query: title, pageNum: currentPage },
+		// 	});
+		// 	const re = result.data;
+		// 	// console.log(re);
+		// 	console.log(re.documents);
+		// 	setItemData(re.documents);
+		// } catch (e) {
+		// 	console.log(e);
+		// }
+	};
+	// if (itemData === undefined) {
+	// 	return <Grid>검색 결과 없음</Grid>;
+	// }
+
 	return (
 		<Grid align="center" className="mylibrary">
 			<Grid align="center" className="mylibrary-container">
-				<SearchBar title={itemData[0].title} />
-				<SubHeader name="도서 검색" />
-				<BookList itemData={itemData} path="/book_info/" />
+				<SearchBar />
+				<SubHeader name="검색 결과" />
+				{(() => {
+					if (itemData === undefined) {
+						return <Grid>검색 결과 없음</Grid>;
+					}
+
+					return (
+						<Grid>
+							<BookList itemData={itemData} path="/book_info/" />
+							<Button
+								onClick={() => {
+									movePage(-1);
+								}}
+							>
+								<ArrowLeftIcon />
+							</Button>
+							<Button>{currentPage}</Button>
+							<Button
+								onClick={() => {
+									movePage(1);
+								}}
+							>
+								<ArrowRightIcon />
+							</Button>
+						</Grid>
+					);
+				})()}
 			</Grid>
 		</Grid>
 	);

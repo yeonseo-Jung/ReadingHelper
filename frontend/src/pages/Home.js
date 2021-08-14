@@ -9,7 +9,7 @@ function Home() {
 	const title = '달러구트 꿈 백화점';
 	return (
 		<Grid container className="home">
-			<SearchBar title={title} />
+			<SearchBar />
 			<Grid container direction="column" className="calendar-container">
 				<Paper elevation={3} className="home-calendar">
 					<img src={InitCalendar} alt="cal" />

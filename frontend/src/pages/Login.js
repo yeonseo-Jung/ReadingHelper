@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -9,6 +9,7 @@ import Container from '@material-ui/core/Container';
 import LoginImg from '../components/styles/login_character.jpeg';
 import KaKaoIcon from '../components/styles/kakao_icon.png';
 import NaverIcon from '../components/styles/naver_icon.png';
+import { KAKAO_AUTH_URL } from '../function';
 
 function Login() {
 	return (
@@ -56,7 +57,7 @@ function Login() {
 					<Grid className="login-line" />
 				</Grid>
 				<Grid className="accounts">
-					<Button variant="contained" className="btnAccount">
+					<Button variant="contained" className="btnAccount" href={KAKAO_AUTH_URL}>
 						<img src={KaKaoIcon} width="30" height="30" alt="kakao" className="accountIcon" />
 						카카오톡
 					</Button>
