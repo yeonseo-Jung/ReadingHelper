@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Button, Typography } from '@material-ui/core';
 import FaceIcon from '@material-ui/icons/Face';
 import TitleImg from './styles/title_icon.jpg';
+import NoticeDialog from './NoticeDialog';
 
-const Header = () => {
+const Header = ({ userChanged, handleLogout }) => {
 	const styles = {
 		borderRadius: 20,
 		backgroundColor: '#fdd45a',
 		color: '#ffffff',
 	};
+	const [user, setUser] = useState('');
+	const [signOut, setSignOut] = useState(false);
+	const setDialog = () => {
+		setSignOut(!signOut);
+	};
+	useEffect(() => {
+		setUser(userChanged);
+	}, [userChanged]);
 	return (
 		<Grid container className="header">
 			<Grid className="header-title">
@@ -41,19 +50,40 @@ const Header = () => {
 				</Link>
 			</Grid>
 			<Grid className="header-buttons">
-				<Link to="/mypage">
-					<Button startIcon={<FaceIcon className="header-mypage" />} />
-				</Link>
-				<Link to="/login">
-					<Button style={styles} variant="contained">
-						로그인
-					</Button>
-				</Link>
-				<Link to="/join">
-					<Button style={styles} variant="contained">
-						회원가입
-					</Button>
-				</Link>
+				{!user ? (
+					<Grid className="header-logout">
+						<Link to="/login">
+							<Button style={styles} variant="contained">
+								로그인
+							</Button>
+						</Link>
+						<Link to="/join">
+							<Button style={styles} variant="contained">
+								회원가입
+							</Button>
+						</Link>
+					</Grid>
+				) : (
+					<Grid className="header-login">
+						<Link to="/mypage">
+							<Button className="mypage-button">
+								<FaceIcon className="mypage-icon" />
+							</Button>
+						</Link>
+						{user}님 환영합니다!
+						<Button style={styles} variant="contained" onClick={setDialog}>
+							{signOut && (
+								<NoticeDialog
+									title="확인"
+									info="로그아웃 하시겠습니까?"
+									path="/"
+									handleLogout={handleLogout}
+								/>
+							)}
+							로그아웃
+						</Button>
+					</Grid>
+				)}
 			</Grid>
 		</Grid>
 	);
