@@ -6,7 +6,6 @@ import IconButton from '@material-ui/core/IconButton';
 import axios from 'axios';
 
 const SearchBar = (props) => {
-	const [keyword, setKeyword] = useState('');
 	const [title, setTitle] = useState('');
 	const [itemData, setItemData] = useState();
 	const { disabled } = props;
@@ -16,16 +15,6 @@ const SearchBar = (props) => {
 		console.log(event.target.value);
 		setTitle(event.target.value);
 	};
-	/*
-	useEffect(() => {
-		console.log(`아이템 결고 ㅏ : ${itemData}`);
-		history.push({
-			pathname: '/search',
-			search: `?keyword=${title}`,
-			state: { result: itemData },
-		});
-	}, [itemData]);
-	*/
 
 	const onClick = async (tit) => {
 		console.log(`제목 ;${tit}`);
@@ -42,13 +31,8 @@ const SearchBar = (props) => {
 				const re = result.data;
 				const r = re.documents;
 
-				// const obj = JSON.parse(r);
-				console.log(`1 페이지 내용 `);
 				console.log(r);
 				setItemData(re.documents);
-
-				// console.log(`data: ${obj.title}`);
-				console.log(`아이템 :${itemData}`);
 				history.push({
 					pathname: '/search',
 					search: `?keyword=${tit}`,
@@ -58,11 +42,7 @@ const SearchBar = (props) => {
 		} catch (e) {
 			console.log(e);
 		}
-
-		// console.log(`keyword : ${title}`);
 		console.log('검색 버튼 클릭');
-		// history.push(`/search?keyword=${tit}`);
-		// return <Redirect to="/search" />;
 	};
 
 	const keyPress = (event) => {
@@ -70,7 +50,6 @@ const SearchBar = (props) => {
 		if (event.key === 'Enter') {
 			event.preventDefault();
 			onClick(title);
-			console.log('엔터키!');
 		}
 		return '';
 	};

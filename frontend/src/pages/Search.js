@@ -4,7 +4,6 @@ import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import { parse } from 'query-string';
 import BookList from '../components/BookList';
 import SubHeader from '../components/SubHeader';
 import SearchBar from '../components/SearchBar';
@@ -30,22 +29,7 @@ function Search() {
 			console.log(re.result);
 			setItemData(re.result);
 		}
-		// const { query } = parse(useLocation().search);
-		// console.log(query);
-
-		/*
-		if (st === undefined) {
-			console.log('undefined');
-		} else {
-			setItemData(st[1]);
-			setTitle(st[0]);
-			console.log(`전달받은 itemData : ${st[1]}`);
-			console.log(loc.search);
-			console.log(`전달받은 itemData : ${st}`);
-		} */
 	}, [loc.search]);
-
-	// console.log(`전달받은 itemData : ${itemData}`);
 
 	useEffect(() => {
 		async function updatePage() {
@@ -68,22 +52,7 @@ function Search() {
 		if (!(currentPage === 1 && num === -1)) {
 			setCurrentPage(currentPage + num);
 		}
-		// try {
-		// 	console.log(`현재 페이지 번호 : ${currentPage}`);
-		// 	const result = await axios.get('/search', {
-		// 		params: { query: title, pageNum: currentPage },
-		// 	});
-		// 	const re = result.data;
-		// 	// console.log(re);
-		// 	console.log(re.documents);
-		// 	setItemData(re.documents);
-		// } catch (e) {
-		// 	console.log(e);
-		// }
 	};
-	// if (itemData === undefined) {
-	// 	return <Grid>검색 결과 없음</Grid>;
-	// }
 
 	return (
 		<Grid align="center" className="mylibrary">

@@ -1,9 +1,9 @@
 import axios from 'axios'; // 액시오스
 
-export default function customAxios(url, m, callback) {
+export default function customAxios(url, callback) {
 	axios({
-		url: `/${url}`,
-		method: `${m}`,
+		url: `/book_info${url}`,
+		method: 'post',
 
 		/**
 		 * 개발 환경에서의 크로스 도메인 이슈를 해결하기 위한 코드로
