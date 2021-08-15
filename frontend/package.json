@@ -74,10 +74,11 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "export PORT=3000 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "kill": "pkill -9 node"
   },
   "browserslist": {
     "production": [
