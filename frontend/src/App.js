@@ -37,8 +37,8 @@ function App() {
 	};
 	const getUserInfo = (data) => {
 		setSingIn(true);
-		if (data.nickname) {
-			setName(data.nickname);
+		if (data.name) {
+			setName(data.name);
 		} else {
 			setName('사용자');
 		}

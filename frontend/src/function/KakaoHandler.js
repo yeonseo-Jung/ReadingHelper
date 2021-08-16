@@ -23,7 +23,7 @@ const KakaoHandler = ({ getUserInfo }) => {
 							email: "" 
 						}
 					*/
-					alert(`☆${res.data.nickname}★님 환영합니다!!!!!!!!`);
+					alert(`☆${res.data.name}★님 환영합니다!!!!!!!!`);
 					getUserInfo(res.data);
 					setTimeout(() => {
 						history.push('/');
