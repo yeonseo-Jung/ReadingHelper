@@ -21,7 +21,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok:1.18.18'
 	implementation 'org.projectlombok:lombok:1.18.18'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'mysql:mysql-connector-java'
+	implementation 'mysql:mysql-connector-java:8.0.20'
 	implementation 'com.github.scribejava:scribejava-core:2.8.1'
 	implementation 'com.google.code.gson:gson:2.8.5'
 }
