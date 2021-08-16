@@ -1,6 +1,8 @@
 package com.forweber.backend.controller;
 
+import com.forweber.backend.domain.User;
 import com.forweber.backend.domain.AuthKakao;
+import com.forweber.backend.repository.UserRepository;
 import com.forweber.backend.service.AuthKakaoService;
 import com.forweber.backend.service.AuthNaverService;
 import com.forweber.backend.service.UserService;
@@ -20,21 +22,23 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {
-    @Autowired
-    private final UserService userService;
-    @Autowired
-    private AuthKakaoService kakaoService;
-    @Autowired
-    private AuthNaverService naverService;
+    @Autowired private UserRepository userRepository;
+    @Autowired private UserService userService;
+    @Autowired private AuthKakaoService kakaoService;
+    @Autowired private AuthNaverService naverService;
 
     // Redirect URL을 통해 프론트로부터 인자 코드를 받음
     @GetMapping("/login/callback/kakao")
-    public HashMap<String, Object> callbackKakao(@RequestParam("code") String code) throws Exception {
+    public HashMap<String, String> callbackKakao(@RequestParam("code") String code) throws Exception {
         AuthKakao authorization = kakaoService.getAccessToken(code);
         System.out.println("controller access_token : " + authorization);
 
-        HashMap<String, Object> userInfo = kakaoService.getUserInfo(authorization.getAccess_token());
+        HashMap<String, String> userInfo = kakaoService.getUserInfo(authorization.getAccess_token());
         userInfo.put("access_token", authorization.getAccess_token());
+
+        // DB에 등록된 이메일이 없다면 새로 가입
+        signIn(userInfo, "kakao");
+
         return userInfo;
     }
 
@@ -51,18 +55,25 @@ public class UserController {
     }
 
     @RequestMapping("/login/callback/naver")
-    public HashMap<String, Object> callbackNaver(@RequestParam("code") String code, @RequestParam("state") String state) throws Exception {
-        //userService.oauthNaver(code, request, response);
-//        log.info("log", code, request, session);
-        //String state = naverService.getAuthorizationUrl();
-
-        System.out.println(code+"   "+state);
+    public HashMap<String, String> callbackNaver(@RequestParam("code") String code, @RequestParam("state") String state) throws Exception {
         OAuth2AccessToken accessToken = naverService.getAccessToken(code, state);
-        System.out.println(accessToken.getAccessToken());
-//        return accessToken.getAccess_token();
-        HashMap<String, Object> userInfo = naverService.getUserProfile(accessToken);
+        HashMap<String, String> userInfo = naverService.getUserProfile(accessToken);
         userInfo.put("access_token", accessToken.getAccessToken());
-        System.out.println("user info"+userInfo);
+
+        signIn(userInfo, "naver");
+
         return userInfo;
+    }
+
+    private void signIn(HashMap<String, String> userInfo, String social){
+        // DB에 등록된 이메일이 없다면 새로 가입
+        if(!userService.isSignedUser(userInfo.get("email"), social)){
+            User user = new User();
+            user.setName(userInfo.get("name"));
+            user.setEmail(userInfo.get("email"));
+            user.setPassword(userInfo.get("access_token"));
+            user.setSocial(social);
+            userService.join(user);
+        }
     }
 }
