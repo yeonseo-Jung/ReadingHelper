@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import {
@@ -17,30 +18,30 @@ import {
 } from './pages';
 import { Header } from './components';
 import './scss/main.scss';
-import customAxios from './customAxios';
 import { NaverHandler, KakaoHandler, LoginHandler } from './function';
 
 function App() {
-	const [item, setItem] = useState('');
-	const callback = (data) => {
-		setItem(data);
-	};
-	useEffect(() => {
-		customAxios('/1', callback);
-	}, []);
-
 	const [signIn, setSingIn] = useState(false);
 	const [name, setName] = useState('');
 	const [loginInfo, setLoginInfo] = useState('');
+	const [email, setEmail] = useState('');
+	const [social, setSocial] = useState('');
+	const [uid, setUid] = useState();
+
 	const handleLogout = () => {
 		setSingIn(false);
-		setName('');
+		setName(null);
+		setEmail('');
+		setSocial('');
+		setUid(null);
 	};
-	const getUserInfo = (data) => {
+	const getUserInfo = (data, sc) => {
 		setLoginInfo('');
 		setSingIn(true);
 		if (data.name) {
 			setName(data.name);
+			setEmail(data.email);
+			setSocial(sc);
 		} else {
 			setName('사용자');
 		}
@@ -48,8 +49,23 @@ function App() {
 	const getLoginInfo = (data) => {
 		setLoginInfo(data);
 	};
+
 	useEffect(() => {
 		console.log('log', name, signIn);
+		async function loadLibrary() {
+			try {
+				const result = await axios.get('/userInfo', {
+					params: { email, social },
+				});
+				const re = result.data;
+				setUid(re);
+			} catch (e) {
+				console.log(e);
+			}
+		}
+		if (signIn === true) {
+			loadLibrary();
+		}
 	}, [getUserInfo]);
 
 	useEffect(() => {
@@ -74,8 +90,8 @@ function App() {
 				<Route path="/report/:id" component={ReportInfo} />
 				<Route exact path="/report" component={Report} />
 			</Switch>
-			<Route exact path="/mylib" component={MyLibrary} />
-			<Route exact path="/book_info/:id" component={BookInfo} />
+			<Route exact path="/mylib" component={() => <MyLibrary uid={uid} />} />
+			<Route exact path="/book_info/:id" component={() => <BookInfo uid={uid} />} />
 			<Route path="/calendar" component={BookCalendar} />
 			<Route path="/search" component={Search} />
 		</Grid>

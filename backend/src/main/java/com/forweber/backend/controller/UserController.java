@@ -98,6 +98,10 @@ public class UserController {
         return userInfo;
     }
 
+    @GetMapping("/userInfo")
+    private Long getUserID(@RequestParam String email,@RequestParam String social){
+        return userService.findId(email,social);
+    }
 
     private boolean signIn(HashMap<String, String> userInfo, String social){
         // DB에 등록된 이메일이 없다면 새로 가입

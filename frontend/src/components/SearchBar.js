@@ -56,15 +56,7 @@ const SearchBar = (props) => {
 
 	return (
 		<Grid container className="search-container">
-			<Paper
-				component="form"
-				className="home-search"
-				style={{
-					borderRadius: 20,
-					backgroundColor: '#fdd45a',
-				}}
-				variant="contained"
-			>
+			<Paper component="form" className="home-search" variant="contained">
 				<Grid className="search-input">
 					<InputBase
 						placeholder="원하는 책을 검색해보세요!"
@@ -77,7 +69,7 @@ const SearchBar = (props) => {
 				</Grid>
 				<Grid className="search-icon">
 					<IconButton aria-label="search" onClick={() => onClick(title)}>
-						<SearchIcon />
+						<SearchIcon style={{ lineHeight: 900 }} />
 					</IconButton>
 				</Grid>
 			</Paper>

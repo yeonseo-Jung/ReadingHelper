@@ -34,6 +34,7 @@ public class UserService {
         }
         return null;
     }
+    public Long findId(String email,String social){return userRepository.findUserId(email,social);}
 
     public List<User> findUsers() { return userRepository.findAll(); }
     public Optional<User> findOne(Long userId) {return userRepository.findById(userId);}
