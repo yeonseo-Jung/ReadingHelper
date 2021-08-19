@@ -9,15 +9,12 @@ function MyLibrary({ uid }) {
 
 	useEffect(() => {
 		console.log('내 서재 들어옴!');
-		console.log(`id는 : ${uid}`);
 		async function loadLibrary() {
 			try {
 				const result = await axios.get('/mylib', {
 					params: { id: uid },
 				});
 				const re = result.data;
-				console.log('서재 조회 결과');
-				console.log(re);
 				setItemData(re);
 			} catch (e) {
 				console.log(e);

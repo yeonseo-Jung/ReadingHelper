@@ -67,9 +67,6 @@ public class UserController {
 
     @GetMapping("/userInfo")
     private Long getUserID(@RequestParam String email,@RequestParam String social){
-        System.out.println(email);
-        System.out.println(social);
-        userService.findId(email,social);
         return userService.findId(email,social);
     }
 

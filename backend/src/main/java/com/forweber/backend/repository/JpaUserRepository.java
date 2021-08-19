@@ -39,8 +39,6 @@ public class JpaUserRepository implements UserRepository{
             obj = em.createQuery("select m from User m where m.email=:email and m.social=:social", User.class)
                     .setParameter("email", email)
                     .setParameter("social", social).getSingleResult();
-            System.out.println("-----result 출력-------");
-            System.out.println(obj.getId());
         }catch(NoResultException e ){
             System.out.println("오류 - No Result Exception");
         }

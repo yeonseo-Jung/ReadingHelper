@@ -18,7 +18,6 @@ import {
 } from './pages';
 import { Header } from './components';
 import './scss/main.scss';
-import customAxios from './customAxios';
 import { NaverHandler, KakaoHandler } from './function';
 
 function App() {
@@ -54,8 +53,6 @@ function App() {
 					params: { email, social },
 				});
 				const re = result.data;
-				console.log('id 값 받아오기');
-				console.log(re);
 				setUid(re);
 			} catch (e) {
 				console.log(e);
