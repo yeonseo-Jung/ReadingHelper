@@ -16,16 +16,16 @@ function NaverHandler({ getUserInfo }) {
 			RequestHandler({ path: 'naver', params: { code: authorizationCode, state } })
 				.then((res) => {
 					console.log('requestToken:', res.data);
-					alert('로그인에 성공했습니다.');
-					getUserInfo(res.data);
 					/*
 						res.data =
 						{
 							access_token: "",
-							nickname: "",
+							name: "",
 							email: "" 
 						}
 					*/
+					alert(`☆${res.data.name}★님 환영합니다!!!!!!!!`);
+					getUserInfo(res.data);
 					setTimeout(() => {
 						history.push('/');
 					}, 500);
