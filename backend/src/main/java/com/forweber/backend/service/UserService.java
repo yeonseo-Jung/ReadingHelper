@@ -26,6 +26,15 @@ public class UserService {
         return false;
     }
 
+    // 등록된 이메일과 패스워드가 맞는지 확인
+    public User checkLogin(String email, String password){
+        if(userRepository.findByPw(email, password)
+            .isPresent()) {
+            return userRepository.findByPw(email, password).get();
+        }
+        return null;
+    }
+
     public List<User> findUsers() { return userRepository.findAll(); }
     public Optional<User> findOne(Long userId) {return userRepository.findById(userId);}
 }

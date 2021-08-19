@@ -38,6 +38,15 @@ public class JpaUserRepository implements UserRepository{
     }
 
     @Override
+    public Optional<User> findByPw(String email, String password) {
+        List<User> result = em.createQuery("select m from User m where m.email=:email and m.password=:password", User.class)
+                .setParameter("email", email)
+                .setParameter("password", password)
+                .getResultList();
+        return result.stream().findAny();
+    }
+
+    @Override
     public List<User> findAll() {
         return em.createQuery("select m from User m", User.class).getResultList();
     }

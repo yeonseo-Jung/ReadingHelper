@@ -65,7 +65,41 @@ public class UserController {
         return userInfo;
     }
 
-    private void signIn(HashMap<String, String> userInfo, String social){
+    @RequestMapping("/login/callback/own/sign")
+    public HashMap<String, String> signOwn(@RequestParam("type") String type, @RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("password") String pw){
+        HashMap<String, String> userInfo = new HashMap<String, String>();
+        System.out.println("type" + type);
+        userInfo.put("name", name);
+        userInfo.put("email", email);
+        // 네이버, 카카오와의 DB 형식 통일을 위해 비밀번호를 access_token으로 저장합니다.
+        userInfo.put("access_token", pw);
+        System.out.println("userinfo" + name + email + pw);
+        // 이미 가입된 이메일이라면
+        if (!signIn(userInfo, "own")) {
+            userInfo.clear();
+            userInfo.put("response", "duplicated");
+        }
+        return userInfo;
+
+    }
+
+    @RequestMapping("/login/callback/own")
+    public HashMap<String, String> loginOwn(@RequestParam("type") String type, @RequestParam("email") String email, @RequestParam("password") String pw){
+        HashMap<String, String> userInfo = new HashMap<String, String>();
+        System.out.println("type" + type);
+        User user = userService.checkLogin(email, pw);
+        System.out.println("userinfo" + user);
+        if(user != null){
+            userInfo.put("name", user.getName());
+            userInfo.put("email", email);
+        }else{
+            userInfo.put("response", "invalidate");
+        }
+        return userInfo;
+    }
+
+
+    private boolean signIn(HashMap<String, String> userInfo, String social){
         // DB에 등록된 이메일이 없다면 새로 가입
         if(!userService.isSignedUser(userInfo.get("email"), social)){
             User user = new User();
@@ -74,6 +108,9 @@ public class UserController {
             user.setPassword(userInfo.get("access_token"));
             user.setSocial(social);
             userService.join(user);
+            return true;
+        }else{
+            return false;
         }
     }
 }
