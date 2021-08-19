@@ -12,7 +12,23 @@ import KaKaoIcon from '../components/styles/kakao_icon.png';
 import NaverIcon from '../components/styles/naver_icon.png';
 import { KAKAO_AUTH_URL, RequestHandler } from '../function';
 
-function Login() {
+function Login({ getLoginInfo }) {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const history = useHistory();
+	const handleSubmit = () => {
+		if (!email || !password) {
+			alert('아이디 또는 비밀번호를 입력해주세요.');
+			return;
+		}
+		const data = {
+			type: 'login',
+			email,
+			password,
+		};
+		getLoginInfo(data);
+		history.push('/login/callback/own');
+	};
 	return (
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
@@ -28,27 +44,34 @@ function Login() {
 						margin="normal"
 						required
 						fullWidth
-						id="email"
 						label="아이디"
+						id="email"
 						name="email"
 						autoComplete="email"
-						autoFocus
+						onChange={(e) => setEmail(e.target.value)}
 					/>
 					<TextField
 						variant="outlined"
 						margin="normal"
 						required
 						fullWidth
-						name="password"
 						label="비밀번호"
 						type="password"
 						id="password"
 						autoComplete="current-password"
+						onChange={(e) => setPassword(e.target.value)}
 					/>
 					<Link className="forgotPW" href="#!">
 						비밀번호를 잊으셨나요?
 					</Link>
-					<Button type="submit" fullWidth variant="contained" color="primary" className="btnLogin">
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						color="primary"
+						className="btnLogin"
+						onClick={handleSubmit}
+					>
 						로그인
 					</Button>
 				</form>

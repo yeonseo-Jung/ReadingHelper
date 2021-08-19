@@ -7,7 +7,7 @@ import RequestHandler from './RequestHandler';
 const JoinHandler = ({ userInfo, getUserInfo }) => {
 	const history = useHistory();
 	let url = '';
-	if (userInfo.type === 'signin') {
+	if (userInfo.type === 'signup') {
 		url = 'own/sign';
 	} else {
 		url = 'own';
