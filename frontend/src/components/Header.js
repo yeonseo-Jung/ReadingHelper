@@ -18,6 +18,8 @@ const Header = ({ userChanged, handleLogout }) => {
 	};
 	useEffect(() => {
 		setUser(userChanged);
+		console.log('유저');
+		console.log(userChanged);
 	}, [userChanged]);
 	return (
 		<Grid container className="header">

@@ -1,15 +1,16 @@
 package com.forweber.backend.domain;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@NoArgsConstructor
 @Getter
-@Setter
 @Entity
 @Table
-public class Book {
+public class Library {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,6 +27,20 @@ public class Book {
     private String contents;
     @Column(name = "thumbnail")
     private String thumbnail;
+    @Column(name = "isbn")
+    private String isbn;
     @Column(name = "userId")
-    private String userId;
+    private String user_id;
+
+    @Builder
+    public Library(String title,String author,String translator,String publisher, String contents,String thumbnail,String isbn,String user_id){
+        this.title = title;
+        this.author=author;
+        this.translator = translator;
+        this.publisher=publisher;
+        this.contents = contents;
+        this.thumbnail=thumbnail;
+        this.isbn = isbn;
+        this.user_id=user_id;
+    }
 }

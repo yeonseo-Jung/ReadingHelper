@@ -9,7 +9,7 @@ import SubHeader from '../components/SubHeader';
 import SearchBar from '../components/SearchBar';
 
 function Search() {
-	const [itemData, setItemData] = useState();
+	const [itemData, setItemData] = useState([]);
 	const [title, setTitle] = useState('');
 	const [currentPage, setCurrentPage] = useState(1);
 	const loc = useLocation();
@@ -27,7 +27,8 @@ function Search() {
 			const re = loc.state;
 			console.log('result 값');
 			console.log(re.result);
-			setItemData(re.result);
+			const res = re.result;
+			setItemData(res);
 		}
 	}, [loc.search]);
 
@@ -66,7 +67,7 @@ function Search() {
 
 					return (
 						<Grid>
-							<BookList itemData={itemData} path="/book_info/" />
+							<BookList from={0} itemData={itemData} path="/book_info/" />
 							<Button
 								onClick={() => {
 									movePage(-1);

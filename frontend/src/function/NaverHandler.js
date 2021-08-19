@@ -17,7 +17,7 @@ function NaverHandler({ getUserInfo }) {
 				.then((res) => {
 					console.log('requestToken:', res.data);
 					alert('로그인에 성공했습니다.');
-					getUserInfo(res.data);
+					getUserInfo(res.data, 'naver');
 					/*
 						res.data =
 						{

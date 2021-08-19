@@ -24,7 +24,7 @@ const KakaoHandler = ({ getUserInfo }) => {
 						}
 					*/
 					alert(`☆${res.data.name}★님 환영합니다!!!!!!!!`);
-					getUserInfo(res.data);
+					getUserInfo(res.data, 'kakao');
 					setTimeout(() => {
 						history.push('/');
 					}, 500);
