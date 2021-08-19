@@ -18,7 +18,7 @@ import {
 import { Header } from './components';
 import './scss/main.scss';
 import customAxios from './customAxios';
-import { NaverHandler, KakaoHandler } from './function';
+import { NaverHandler, KakaoHandler, LoginHandler } from './function';
 
 function App() {
 	const [item, setItem] = useState('');
@@ -31,11 +31,13 @@ function App() {
 
 	const [signIn, setSingIn] = useState(false);
 	const [name, setName] = useState('');
+	const [loginInfo, setLoginInfo] = useState('');
 	const handleLogout = () => {
 		setSingIn(false);
 		setName('');
 	};
 	const getUserInfo = (data) => {
+		setLoginInfo('');
 		setSingIn(true);
 		if (data.name) {
 			setName(data.name);
@@ -43,19 +45,28 @@ function App() {
 			setName('사용자');
 		}
 	};
+	const getLoginInfo = (data) => {
+		setLoginInfo(data);
+	};
 	useEffect(() => {
 		console.log('log', name, signIn);
 	}, [getUserInfo]);
 
-	useEffect(() => {}, [handleLogout]);
+	useEffect(() => {
+		console.log('log', loginInfo);
+	}, [handleLogout, getLoginInfo]);
 	return (
 		<Grid className="app">
 			<Header userChanged={name} handleLogout={handleLogout} />
 			<Route exact path="/" component={Home} />
-			<Route exact path="/login" component={Login} />
-			<Route path="/join" component={Join} />
+			<Route exact path="/login" render={() => <Login getLoginInfo={getLoginInfo} />} />
+			<Route path="/join" render={() => <Join getLoginInfo={getLoginInfo} />} />
 			<Route path="/login/callback/kakao/" render={() => <KakaoHandler getUserInfo={getUserInfo} />} />
 			<Route path="/login/callback/naver/" render={() => <NaverHandler getUserInfo={getUserInfo} />} />
+			<Route
+				path="/login/callback/own"
+				render={() => <LoginHandler userInfo={loginInfo} getUserInfo={getUserInfo} />}
+			/>
 			<Switch>
 				<Route path="/mypage/edit" component={UserEdit} />
 				<Route exact path="/mypage" component={MyPage} />

@@ -5,6 +5,8 @@ export default function RequestHandler(props) {
 	/*
         인가 코드를 백엔드에 전달하는 callback 요청시 작업: access_token과 사용자 정보가 리턴 됨
         params 필수 인자: 네이버(code, state) 카카오(code)
+		홈페이지 회원가입(userInfo: name, email, password)
+		홈페이지 아이디 로그인(userInfo: email, password)
     */
 	if (props.path) {
 		return axios({
