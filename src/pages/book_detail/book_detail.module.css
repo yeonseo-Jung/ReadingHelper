@@ -1,9 +1,17 @@
+@value makerYellow from "../../common/color.css";
+
 .container {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.line {
+  width: 3rem;
+  height: 0.3rem;
+  background-color: makerYellow;
 }
 
 .detail {

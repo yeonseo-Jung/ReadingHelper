@@ -10,6 +10,7 @@ const BookDetail = (props) => {
   return (
     <section className={styles.container}>
       <h2>{title}</h2>
+      <div className={styles.line}></div>
       <div className={styles.detail}>
         <img className={styles.thumbnail} src={thumbnail} alt="thumbnail" />
         <div className={styles.info}>

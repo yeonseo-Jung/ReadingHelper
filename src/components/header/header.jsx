@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import RoundButton from "../buttons/round_button";
 import styles from "./header.module.css";
 import SearchBar from "../search_bar/search_bar";
+import logoIcon from "../../common/images/title_icon.jpg";
 
 const Header = ({ onSearch }) => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <img className={styles.logoImg} src="/images/title_icon.jpg" alt="" />
+        <img className={styles.logoImg} src={logoIcon} alt="" />
         <h2 className={`${styles.logoTitle} ${styles.yello}`}>독</h2>
         <h2 className={`${styles.logoTitle} ${styles.green}`}>서</h2>
         <h2 className={`${styles.logoTitle} ${styles.yello}`}>비</h2>
