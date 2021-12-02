@@ -1,0 +1,29 @@
+@value makerLime from "../../common/color.css";
+@value makerBlack from "../../common/color.css";
+
+.container {
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+}
+.chat_container {
+}
+
+.message {
+  display: flex;
+}
+
+.bubble_left {
+  color: black;
+  background: makerLime;
+}

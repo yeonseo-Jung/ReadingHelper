@@ -1,0 +1,45 @@
+@value makerYellow,makerLightGreen,makerBlack,makerGrey from "../../common/color.css";
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 2px #000808;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  width: 3em;
+  height: 3em;
+  margin-right: 0.5em;
+}
+
+.logoTitle.yello {
+  color: makerYellow;
+}
+.logoTitle.green {
+  color: makerLightGreen;
+}
+.menu {
+  display: flex;
+  list-style: none;
+  text-decoration: none;
+}
+
+.item {
+  margin-right: 0.8rem;
+  text-decoration: none;
+  color: makerBlack;
+}
+
+.buttons {
+  display: flex;
+}
+
+.button {
+  list-style: none;
+  margin: 0.5em;
+}
