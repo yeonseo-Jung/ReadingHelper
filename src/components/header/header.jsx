@@ -8,13 +8,15 @@ import logoIcon from "../../common/images/title_icon.jpg";
 const Header = ({ onSearch }) => {
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
-        <img className={styles.logoImg} src={logoIcon} alt="" />
-        <h2 className={`${styles.logoTitle} ${styles.yello}`}>독</h2>
-        <h2 className={`${styles.logoTitle} ${styles.green}`}>서</h2>
-        <h2 className={`${styles.logoTitle} ${styles.yello}`}>비</h2>
-        <h2 className={`${styles.logoTitle} ${styles.green}`}>서</h2>
-      </div>
+      <Link to="/" className={styles.logolink}>
+        <div className={styles.logo}>
+          <img className={styles.logoImg} src={logoIcon} alt="" />
+          <h2 className={`${styles.logoTitle} ${styles.yello}`}>독</h2>
+          <h2 className={`${styles.logoTitle} ${styles.green}`}>서</h2>
+          <h2 className={`${styles.logoTitle} ${styles.yello}`}>비</h2>
+          <h2 className={`${styles.logoTitle} ${styles.green}`}>서</h2>
+        </div>
+      </Link>
       <nav>
         <ul className={styles.menu}>
           <li>

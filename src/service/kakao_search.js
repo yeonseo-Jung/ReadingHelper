@@ -9,12 +9,12 @@ class KakaoSearch {
       },
     });
   }
-  async search(query) {
+  async search(query,page) {
     console.log(query);
     const params = {
       query: query,
       sort: "accuracy",
-      page: 1,
+      page: page,
       size: 12,
     };
     console.log(params);
