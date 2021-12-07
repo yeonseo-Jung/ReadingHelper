@@ -9,6 +9,7 @@ import Report from "./pages/report/report";
 import Header from "./components/header/header";
 import SearchResult from "./pages/search_result/search_result";
 import BookDetail from "./pages/book_detail/book_detail";
+import Login from "./pages/login/login";
 
 const App = ({ kakaoSearch }) => {
   const history = useHistory();
@@ -47,6 +48,9 @@ const App = ({ kakaoSearch }) => {
             </Route>
             <Route exact path="/detail">
               <BookDetail />
+            </Route>
+            <Route exact path="/login">
+              <Login />
             </Route>
           </Switch>
         </div>

@@ -38,10 +38,14 @@ const Header = ({ onSearch }) => {
       <div>
         <ul className={styles.buttons}>
           <li className={styles.button}>
-            <RoundButton text="로그인" />
+            <Link to="/login">
+              <RoundButton text="로그인" />
+            </Link>
           </li>
           <li className={styles.button}>
-            <RoundButton text="회원가입" />
+            <Link to="/join">
+              <RoundButton text="회원가입" />
+            </Link>
           </li>
         </ul>
       </div>
