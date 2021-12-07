@@ -7,12 +7,10 @@ const BookCard = ({ book }) => {
   const goToDetail = () => {
     history.push({
       pathname: "/detail",
-      book: book,
+      state: book,
     });
   };
-
-  console.log(book);
-  const { title, publisher, thumbnail, contents } = book;
+  const { title, thumbnail } = book;
   return (
     <li className={styles.book} onClick={goToDetail}>
       <div className={styles.container}>

@@ -20,6 +20,8 @@
 }
 
 .thumbnail {
+  width: 10rem;
+  height: 15rem;
   margin-right: 2rem;
 }
 
@@ -28,7 +30,29 @@
   flex-direction: column;
 }
 
-.authors {
+.maker_list {
   display: flex;
-  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  white-space: nowrap;
+}
+
+.author {
+  display: flex;
+  padding-right: 2rem;
+  margin-right: 2rem;
+}
+.author_title {
+  margin-right: 1rem;
+}
+
+.author_name {
+  margin-top: 0.1rem;
+}
+
+.content_title {
+  margin-bottom: 1rem;
+}
+.content {
+  line-height: 2em;
 }

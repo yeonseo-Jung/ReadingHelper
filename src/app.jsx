@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./app.module.css";
-import { useHistory } from "react-router-dom";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Calendar from "./pages/calendar/calendar";
 import Home from "./pages/home/home";
@@ -12,15 +11,13 @@ import BookDetail from "./pages/book_detail/book_detail";
 import Login from "./pages/login/login";
 
 const App = ({ kakaoSearch }) => {
-  const history = useHistory();
-  const [word, setWord] = useState("default");
+  const [word, setWord] = useState("");
   const [books, setBooks] = useState([]);
 
-  const onSearch = async (query) => {
-    console.log(kakaoSearch);
+  const onSearch = async (query, page) => {
     setWord(query);
     await kakaoSearch
-      .search(query) //
+      .search(query, page) //
       .then((books) => {
         setBooks(books.data.documents);
       });
@@ -44,7 +41,7 @@ const App = ({ kakaoSearch }) => {
               <Calendar />
             </Route>
             <Route exact path="/search">
-              <SearchResult query={word} books={books} />
+              <SearchResult query={word} books={books} onSearch={onSearch} />
             </Route>
             <Route exact path="/detail">
               <BookDetail />
