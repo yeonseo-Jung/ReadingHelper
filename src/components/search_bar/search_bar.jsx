@@ -9,10 +9,14 @@ const SearchBar = ({ onSearch }) => {
 
   const handleSearch = async () => {
     const keyword = inputRef.current.value;
-    history.push({
-      pathname: "/search",
-    });
-    await onSearch(keyword);
+    if (!keyword) {
+      alert("검색어를 입력하세요.");
+    } else {
+      history.push({
+        pathname: "/search",
+      });
+      await onSearch(keyword, 1);
+    }
   };
   const onClick = (event) => {
     console.log(inputRef.current.value);

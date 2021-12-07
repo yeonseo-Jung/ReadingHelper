@@ -10,11 +10,18 @@
   display: flex;
   align-items: center;
 }
+.logolink {
+  text-decoration: none;
+}
 
 .logoImg {
   width: 3em;
   height: 3em;
   margin-right: 0.5em;
+}
+
+.logoTitle {
+  text-decoration: none;
 }
 
 .logoTitle.yello {
@@ -26,7 +33,6 @@
 .menu {
   display: flex;
   list-style: none;
-  text-decoration: none;
 }
 
 .item {
