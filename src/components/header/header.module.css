@@ -42,10 +42,19 @@
 }
 
 .buttons {
+  position: relative;
   display: flex;
+  align-items: center;
 }
 
 .button {
   list-style: none;
   margin: 0.5em;
+}
+
+.userName {
+  position: absolute;
+  left: -6rem;
+  top: 0.9rem;
+  font-size: 0.8rem;
 }
