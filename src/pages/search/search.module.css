@@ -1,0 +1,28 @@
+.container {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.books {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.move_page {
+  align-self: center;
+  display: flex;
+  margin: 1rem 0;
+}
+.page {
+  margin: 0 2rem;
+}
+.btn {
+  cursor: pointer;
+  background: transparent;
+}
+
+.btn_img {
+  width: 2rem;
+}
