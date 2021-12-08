@@ -3,9 +3,8 @@ import styles from "./home.module.css";
 import { useSelector } from "react-redux";
 
 const Home = (props) => {
-
   const { user: currentUser } = useSelector((state) => state.auth);
-  console.log(currentUser);
+  console.log("current user is: ", currentUser);
   return <div>Home</div>;
 };
 
