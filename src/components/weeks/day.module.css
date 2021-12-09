@@ -1,11 +1,23 @@
-.day {
+.container {
   width: 4rem;
   height: 5rem;
   cursor: pointer;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  border-right: 0.1rem solid;
+  border-bottom: 0.1rem solid;
 }
-
+.day {
+  align-self: end;
+}
+.img {
+  align-self: center;
+}
 .day:hover {
   background: yellow;
+}
+
+.thumbnail {
+  width: 3rem;
+  height: 4rem;
 }

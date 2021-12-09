@@ -9,7 +9,7 @@ class KakaoSearch {
       },
     });
   }
-  async search(query,page) {
+  async search(query, page) {
     console.log(query);
     const params = {
       query: query,

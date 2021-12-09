@@ -3,11 +3,11 @@ import styles from "./app.module.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Calendar from "./pages/calendar/calendar";
 import Home from "./pages/home/home";
-import Library from "./pages/library/library";
+import Library from "./pages/myLibrary/myLibrary";
 import Report from "./pages/report/report";
 import Header from "./components/header/header";
-import SearchResult from "./pages/search_result/search_result";
-import BookDetail from "./pages/book_detail/book_detail";
+import SearchResult from "./pages/search/search";
+import BookDetail from "./pages/bookDetail/bookDetail";
 
 const App = ({ kakaoSearch }) => {
   const [word, setWord] = useState("");
