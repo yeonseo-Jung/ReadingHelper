@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import RoundButton from "../buttons/round_button";
 import styles from "./header.module.css";
 import SearchBar from "../search_bar/search_bar";
 import logoIcon from "../../common/images/title_icon.jpg";
+import { logout } from "../../actions/auth";
 
 const Header = ({ onSearch }) => {
+  const { user: currentUser } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.logolink}>
@@ -38,14 +42,34 @@ const Header = ({ onSearch }) => {
       </nav>
       <SearchBar onSearch={onSearch} />
       <div>
-        <ul className={styles.buttons}>
-          <li className={styles.button}>
-            <RoundButton text="로그인" />
-          </li>
-          <li className={styles.button}>
-            <RoundButton text="회원가입" />
-          </li>
-        </ul>
+        {currentUser ? (
+          <ul className={styles.buttons}>
+            <li className={styles.button}>
+              <span className={styles.userName}>{currentUser.name || "사용자"}님 환영합니다👋</span>
+              <Link to="/profile">
+                <RoundButton text="내 정보" />
+              </Link>
+            </li>
+            <li className={styles.button}>
+              <Link to="/" onClick={() => dispatch(logout())}>
+                <RoundButton text="로그아웃" />
+              </Link>
+            </li>
+          </ul>
+        ) : (
+          <ul className={styles.buttons}>
+            <li className={styles.button}>
+              <Link to="/login">
+                <RoundButton text="로그인" />
+              </Link>
+            </li>
+            <li className={styles.button}>
+              <Link to="/join">
+                <RoundButton text="회원가입" />
+              </Link>
+            </li>
+          </ul>
+        )}
       </div>
     </header>
   );
