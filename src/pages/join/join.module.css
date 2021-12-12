@@ -1,0 +1,38 @@
+@value makerLightGrey, makerGrey, makerYellow from '/src/common/color.css';
+
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 20rem;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  height: 4rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1.5px solid makerLightGrey;
+  font-size: 1rem;
+  color: makerGrey;
+  border-radius: 5px;
+}
+
+.input:hover {
+  border-color: makerYellow;
+}
+
+.input:focus {
+  outline: none;
+}
+.pwCheck {
+  margin-bottom: 1rem;
+}

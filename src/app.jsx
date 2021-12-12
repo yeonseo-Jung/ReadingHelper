@@ -10,6 +10,7 @@ import SearchResult from "./pages/search_result/search_result";
 import BookDetail from "./pages/book_detail/book_detail";
 import Login from "./pages/login/login";
 import SocialLogin from "./components/socialLogin/socialLogin";
+import Join from "./pages/join/join";
 
 const App = ({ kakaoSearch }) => {
   const [word, setWord] = useState("");
@@ -52,6 +53,9 @@ const App = ({ kakaoSearch }) => {
             </Route>
             <Route path="/login/callback/naver/" render={() => <SocialLogin type="naver" />} />
             <Route path="/login/callback/kakao/" render={() => <SocialLogin type="kakao" />} />
+            <Route exact path="/join">
+              <Join />
+            </Route>
           </Switch>
         </div>
       </BrowserRouter>
