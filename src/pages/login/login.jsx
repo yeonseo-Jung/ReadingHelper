@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, getNaverUrl, getKakaoUrl } from "../../actions/auth";
 import { useHistory, Redirect } from "react-router-dom";
-import { KAKAO_AUTH_URL } from "../../functions/oauth";
 import LoginIcon from "../../common/images/login_character.jpeg";
 import KakaoIcon from "../../common/images/kakao_icon.png";
 import NaverIcon from "../../common/images/naver_icon.png";
@@ -39,7 +38,12 @@ function Login({ getLoginInfo }) {
       return;
     }
     setLoading(true);
-    dispatch(login(email, password))
+    const userInfo = {
+      type: "login",
+      email,
+      password,
+    };
+    dispatch(login(userInfo))
       .then(() => {
         /*
 						user =
