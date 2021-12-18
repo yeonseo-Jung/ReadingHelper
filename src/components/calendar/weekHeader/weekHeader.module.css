@@ -1,4 +1,4 @@
-@value makerYellow,makerLime,makerBlack,makerGrey from "../../common/color.css";
+@value makerYellow,makerLime,makerBlack,makerGrey from "../../../common/color.css";
 
 .weeks {
   display: flex;

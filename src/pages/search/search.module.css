@@ -4,12 +4,6 @@
   flex-direction: column;
 }
 
-.books {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-}
-
 .move_page {
   align-self: center;
   display: flex;

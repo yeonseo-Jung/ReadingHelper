@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import BookCard from "../../components/bookCard/bookCard";
+import BookCard from "../../components/common/bookCard/bookCard";
 import styles from "./search.module.css";
 import arrowRight from "../../common/images/arrow_right.png";
 import arrowLeft from "../../common/images/arrow_left.png";
+import BookList from "../../components/common/bookList/bookList";
 
 const SearchResult = ({ query, books, onSearch }) => {
   const [bookTitle, setBookTitle] = useState(query);
@@ -49,19 +50,25 @@ const SearchResult = ({ query, books, onSearch }) => {
       {booklist.length === 0 ? (
         <h3>검색결과가 없습니다.</h3>
       ) : (
-        <ul className={styles.books}>
-          {booklist.map((book) => (
-            <BookCard key={book.isbn} book={book} />
-          ))}
-        </ul>
+        <BookList books={booklist} state="search" />
       )}
       <div className={styles.move_page}>
         <button className={styles.btn}>
-          <img className={styles.btn_img} src={arrowLeft} alt="left" onClick={() => movePage(-1)} />
+          <img
+            className={styles.btn_img}
+            src={arrowLeft}
+            alt="left"
+            onClick={() => movePage(-1)}
+          />
         </button>
         <h2 className={styles.page}>{page}</h2>
         <button className={styles.btn}>
-          <img className={styles.btn_img} src={arrowRight} alt="right" onClick={() => movePage(1)} />
+          <img
+            className={styles.btn_img}
+            src={arrowRight}
+            alt="right"
+            onClick={() => movePage(1)}
+          />
         </button>
       </div>
     </section>

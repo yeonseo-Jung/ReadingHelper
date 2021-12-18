@@ -3,12 +3,7 @@
   flex-direction: column;
 }
 .pages {
-<<<<<<< HEAD
-  width: 100%;
-  height: 100vh;
-=======
   margin-top: 2rem;
->>>>>>> 14b40e24c0cd47709ba75e16a3b02e593de53470
 }
 
 * {

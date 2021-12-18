@@ -6,8 +6,8 @@ import LoginIcon from "../../common/images/login_character.jpeg";
 import KakaoIcon from "../../common/images/kakao_icon.png";
 import NaverIcon from "../../common/images/naver_icon.png";
 import styles from "./login.module.css";
-import RoundButton from "../../components/buttons/round_button";
-import LoadSpinner from "../../components/loadSpinner/loadSpinner";
+import RoundButton from "../../components/common/buttons/round_button";
+import LoadSpinner from "../../components/common/loadSpinner/loadSpinner";
 
 function Login({ getLoginInfo }) {
   const formRef = useRef();
@@ -83,7 +83,13 @@ function Login({ getLoginInfo }) {
           }}
           className={styles.form}
         >
-          <input className={styles.input} type="text" name="id" placeholder="아이디" onChange={onChangeUsername} />
+          <input
+            className={styles.input}
+            type="text"
+            name="id"
+            placeholder="아이디"
+            onChange={onChangeUsername}
+          />
           <input
             className={styles.input}
             type="text"

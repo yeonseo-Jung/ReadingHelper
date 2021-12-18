@@ -3,13 +3,16 @@ import styles from "./app.module.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Calendar from "./pages/calendar/calendar";
 import Home from "./pages/home/home";
-import Library from "./pages/myLibrary/myLibrary";
+import Library from "./pages/library/library";
 import Report from "./pages/report/report";
 import Header from "./components/header/header";
 import SearchResult from "./pages/search/search";
 import BookDetail from "./pages/bookDetail/bookDetail";
+import Login from "./pages/login/login";
+import Join from "./pages/join/join";
+import SocialLogin from "./components/socialLogin/socialLogin";
 
-const App = ({ kakaoSearch }) => {
+const App = ({ kakaoSearch, library }) => {
   const [word, setWord] = useState("");
   const [books, setBooks] = useState([]);
 
@@ -31,7 +34,7 @@ const App = ({ kakaoSearch }) => {
               <Home />
             </Route>
             <Route exact path="/library">
-              <Library />
+              <Library library={library} />
             </Route>
             <Route exact path="/report">
               <Report />
@@ -43,7 +46,7 @@ const App = ({ kakaoSearch }) => {
               <SearchResult query={word} books={books} onSearch={onSearch} />
             </Route>
             <Route exact path="/detail">
-              <BookDetail />
+              <BookDetail library={library} />
             </Route>
             <Route exact path="/login">
               <Login />

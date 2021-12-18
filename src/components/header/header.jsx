@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import RoundButton from "../buttons/round_button";
+import RoundButton from "../common/buttons/round_button";
 import styles from "./header.module.css";
 import SearchBar from "../searchBar/searchBar";
 import logoIcon from "../../common/images/title_icon.jpg";
@@ -45,7 +45,9 @@ const Header = ({ onSearch }) => {
         {currentUser ? (
           <ul className={styles.buttons}>
             <li className={styles.button}>
-              <span className={styles.userName}>{currentUser.name || "사용자"}님 환영합니다👋</span>
+              <span className={styles.userName}>
+                {currentUser.name || "사용자"}님 환영합니다👋
+              </span>
               <Link to="/profile">
                 <RoundButton text="내 정보" />
               </Link>

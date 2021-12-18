@@ -1,16 +1,20 @@
 import axios from "axios";
 
 class Library {
-  constructor(uid) {
+  constructor() {
     this.library = axios.create({
-      baseURL: "http://localhost:3000",
-      params: {
-        id: uid,
-      },
+      baseURL: "http://localhost:8080",
     });
   }
-  async loadLibrary() {
-    const response = await axios.get("/mylib");
+
+  async loadBooks() {
+    const response = await this.library.get("/mylib", { params: { id: 1 } });
+    return response;
+  }
+  async saveBook(book) {
+    const response = await this.library.post("/book_info", {
+      params: book,
+    });
     return response;
   }
 }
