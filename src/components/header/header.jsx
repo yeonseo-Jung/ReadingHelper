@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import RoundButton from "../buttons/round_button";
 import styles from "./header.module.css";
-import SearchBar from "../search_bar/search_bar";
+import SearchBar from "../searchBar/searchBar";
 import logoIcon from "../../common/images/title_icon.jpg";
 import { logout } from "../../actions/auth";
 

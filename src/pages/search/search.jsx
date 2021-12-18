@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import BookCard from "../../components/book_card/book_card";
-import styles from "./search_result.module.css";
+import BookCard from "../../components/bookCard/bookCard";
+import styles from "./search.module.css";
 import arrowRight from "../../common/images/arrow_right.png";
 import arrowLeft from "../../common/images/arrow_left.png";
 

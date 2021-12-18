@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
-import styles from "./book_detail.module.css";
+import styles from "./bookDetail.module.css";
 import thumbnailImg from "../../common/images/thumbnail.png";
 
 const BookDetail = (props) => {
   const history = useHistory();
   const historyState = history?.location?.state;
-  const [book, setBook] = useState(
-    historyState === undefined ? JSON.parse(localStorage.getItem("book")) : historyState
-  );
-
+  const book = historyState === undefined ? JSON.parse(localStorage.getItem("book")) : historyState;
   const { title, thumbnail, contents, authors, publisher, translators } = book;
 
-  const thumbnail_img = book.thumbnail.length > 0 ? book.thumbnail : thumbnailImg;
-  const author = book.authors.join(", ");
-  const translator = book.translators.join(", ");
+  const thumbnail_img = thumbnail.length > 0 ? thumbnail : thumbnailImg;
+  const author = authors.join(", ");
+  const translator = translators.join(", ");
 
   useEffect(() => {
     if (book.length) {

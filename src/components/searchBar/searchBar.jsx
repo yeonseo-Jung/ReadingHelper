@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useHistory } from "react-router";
-import styles from "./search_bar.module.css";
+import styles from "./searchBar.module.css";
 import searchIcon from "../../common/images/search.png";
 
 const SearchBar = ({ onSearch }) => {

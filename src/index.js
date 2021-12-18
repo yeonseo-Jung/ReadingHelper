@@ -7,7 +7,7 @@ import promiseMiddlerware from "redux-promise";
 import reduxThunk from "redux-thunk";
 import reducer from "./reducers";
 import App from "./app";
-import KakaoSearch from "./service/kakao_search";
+import KakaoSearch from "./service/kakaoSearch";
 
 const kakaoSearch = new KakaoSearch(process.env.REACT_APP_KAKAO_SEARCH_API_KEY);
 const createStoreWidthMiddleware = applyMiddleware(

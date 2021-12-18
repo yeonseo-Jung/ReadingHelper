@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
-import styles from "./book_card.module.css";
-
+import styles from "./bookCard.module.css";
 const BookCard = ({ book }) => {
   const history = useHistory();
   const goToDetail = () => {
