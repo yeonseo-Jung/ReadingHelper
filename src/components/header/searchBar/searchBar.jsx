@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useHistory } from "react-router";
 import styles from "./searchBar.module.css";
-import searchIcon from "../../common/images/search.png";
+import searchIcon from "../../../common/images/search.png";
 
 const SearchBar = ({ onSearch }) => {
   const inputRef = useRef();
@@ -29,10 +29,22 @@ const SearchBar = ({ onSearch }) => {
     }
   };
   return (
-    <header className={styles.search}>
-      <input ref={inputRef} className={styles.input} placeholder="검색어를 입력해주세요.." onKeyPress={onKeyPress} />
+    <header className={styles.container}>
+      <form>
+        <input
+          ref={inputRef}
+          className={styles.input}
+          placeholder="검색어를 입력해주세요.."
+          onKeyPress={onKeyPress}
+        />
+      </form>
       <button className={styles.button}>
-        <img className={styles.buttonImg} src={searchIcon} alt="search" onClick={onClick} />
+        <img
+          className={styles.buttonImg}
+          src={searchIcon}
+          alt="search"
+          onClick={onClick}
+        />
       </button>
     </header>
   );

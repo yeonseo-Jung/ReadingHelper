@@ -1,15 +1,10 @@
 .container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
+
 .pages {
-  margin-top: 2rem;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
+  margin-top: 4rem;
 }

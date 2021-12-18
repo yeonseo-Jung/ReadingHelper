@@ -27,7 +27,7 @@ const App = ({ kakaoSearch, library }) => {
   return (
     <div className={styles.container}>
       <BrowserRouter>
-        <Header onSearch={onSearch} />
+        <Header className={styles.header} onSearch={onSearch} />
         <div className={styles.pages}>
           <Switch>
             <Route exact path="/">

@@ -71,6 +71,7 @@
 .social_title::after {
   margin-left: 1rem;
 }
+
 .social_login {
   display: flex;
   text-align: center;

@@ -73,8 +73,6 @@ function Login({ getLoginInfo }) {
         {loading && <LoadSpinner />}
         <section className={styles.logo}>
           <h1 className={styles.title}>로그인</h1>
-          <img src={LoginIcon} width="80" height="110" alt="title" />
-          <span>독비에 오신걸 환영합니다!</span>
         </section>
         <form
           ref={formRef}
@@ -101,6 +99,7 @@ function Login({ getLoginInfo }) {
             비밀번호를 잊으셨나요?
           </span>
           <RoundButton type="submit" text="로그인" />
+
           <span className={styles.login_line}></span>
           <div className={styles.social_title}>간편 로그인</div>
         </form>
