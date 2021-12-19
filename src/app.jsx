@@ -11,6 +11,8 @@ import BookDetail from "./pages/book_detail/book_detail";
 import Login from "./pages/login/login";
 import SocialLogin from "./components/socialLogin/socialLogin";
 import Join from "./pages/join/join";
+import Profile from "./pages/profile/profile";
+import ProfileEdit from "./pages/profile/profileEdit";
 
 const App = ({ kakaoSearch }) => {
   const [word, setWord] = useState("");
@@ -56,6 +58,8 @@ const App = ({ kakaoSearch }) => {
             <Route exact path="/join">
               <Join />
             </Route>
+            <Route exact path="/profile" render={() => <Profile />} />
+            <Route exact path="/profile/edit" render={() => <ProfileEdit />} />
           </Switch>
         </div>
       </BrowserRouter>
