@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { socialLogin } from "../../actions/auth";
-import LoadSpinner from "../loadSpinner/loadSpinner";
+import LoadSpinner from "../common/loadSpinner/loadSpinner";
 import styles from "./socialLogin.module.css";
 const SocialLogin = ({ type }) => {
   const history = useHistory();

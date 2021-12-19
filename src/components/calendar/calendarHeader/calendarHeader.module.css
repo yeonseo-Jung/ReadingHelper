@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+}
+.btn {
+  cursor: pointer;
+  background: transparent;
+}
+
+.btn_img {
+  width: 2rem;
+}

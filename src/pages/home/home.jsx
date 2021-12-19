@@ -5,7 +5,19 @@ import { useSelector } from "react-redux";
 const Home = (props) => {
   const { user: currentUser } = useSelector((state) => state.auth);
   console.log("current user is: ", currentUser);
-  return <div>Home</div>;
+  return (
+    <div>
+      <div className={styles.box}>Home</div>
+      <div className={styles.box}>Home</div>
+      <div className={styles.box}>Home</div>
+      <div className={styles.box}>Home</div>
+      <div className={styles.box}>Home</div>
+      <div className={styles.box}>Home</div>
+      <div className={styles.box}>Home</div>
+      <div className={styles.box}>Home</div>
+      <div className={styles.box}>Home</div>
+    </div>
+  );
 };
 
 export default Home;
