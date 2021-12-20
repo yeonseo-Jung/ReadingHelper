@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./report.module.css";
 
 const Repeat = () => {
   const arr = [];

@@ -81,16 +81,10 @@ function Login({ getLoginInfo }) {
           }}
           className={styles.form}
         >
+          <input className={styles.input} type="text" name="id" placeholder="아이디" onChange={onChangeUsername} />
           <input
             className={styles.input}
-            type="text"
-            name="id"
-            placeholder="아이디"
-            onChange={onChangeUsername}
-          />
-          <input
-            className={styles.input}
-            type="text"
+            type="password"
             name="password"
             placeholder="비밀번호"
             onChange={onChangePassword}

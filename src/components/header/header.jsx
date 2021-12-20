@@ -18,9 +18,7 @@ const Header = ({ onSearch }) => {
         {currentUser ? (
           <ul className={styles.buttons}>
             <li>
-              <span className={styles.userName}>
-                {currentUser.name || "사용자"}님 환영합니다👋
-              </span>
+              <span className={styles.userName}>{currentUser.name || "사용자"}님 환영합니다👋</span>
             </li>
             <li className={styles.button}>
               <Link to="/profile">
@@ -72,7 +70,7 @@ const Header = ({ onSearch }) => {
           </ul>
         </nav>
 
-        <Link to="/login">
+        <Link to="/profile">
           <img className={styles.mypage} src={myPage} alt="mypage" />
         </Link>
       </header>
