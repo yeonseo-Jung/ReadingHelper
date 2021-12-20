@@ -1,19 +1,21 @@
-@value makerYellow,makerLightGreen,makerBlack,makerGrey from "../../common/color.css";
+@value makerLightPurple, makerYellow,makerLightGreen,makerBlack,makerGrey from "../../common/color.css";
 
 .container {
   display: flex;
   justify-content: center;
-  width: 80%;
 }
+
 .leftSection {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 50%;
-  margin: 1.5rem;
+  margin-right: 2rem;
 }
 
 .leftTitle {
+  font-weight: 600;
+  margin-bottom: 2rem;
 }
 
 .rightSection {
@@ -26,11 +28,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 25rem;
   height: 10rem;
-  padding: 2rem;
-  border: 1px solid lightgray;
+  border: 1.5px solid makerYellow;
   border-radius: 20px;
+  margin-bottom: 1rem;
 }
 
 .profile {
@@ -43,21 +45,25 @@
 .profileInfo {
   display: flex;
   flex-direction: column;
-  margin-left: 1rem;
+  margin-left: 1.2rem;
+}
+
+.level {
+  font-size: 0.8rem;
 }
 
 .rightTitle {
-  margin-top: 1.5rem;
   margin-bottom: 1rem;
+  font-weight: 600;
 }
 .badgeSection {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 25rem;
   height: 10rem;
   padding: 2rem;
-  border: 1px solid lightgray;
+  border: 1.5px solid makerYellow;
   border-radius: 20px;
 }
 

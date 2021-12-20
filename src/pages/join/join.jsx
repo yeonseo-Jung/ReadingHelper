@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styles from "./join.module.css";
-import RoundButton from "../../components/buttons/round_button";
+import RoundButton from "../../components/common/buttons/round_button";
 import { register } from "../../actions/auth";
 
 const Join = () => {
@@ -28,7 +28,8 @@ const Join = () => {
       alert("비밀번호가 일치하지 않습니다.");
       return;
     }
-    const regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    const regExp =
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     // 형식에 맞는 경우 true 리턴
     if (!regExp.test(email)) {
       alert("이메일 형식이 맞지 않습니다.");
@@ -73,8 +74,20 @@ const Join = () => {
         }}
         className={styles.form}
       >
-        <input className={styles.input} type="text" name="name" placeholder="이름" onChange={changeName} />
-        <input className={styles.input} type="text" name="id" placeholder="이메일" onChange={changeEmail} />
+        <input
+          className={styles.input}
+          type="text"
+          name="name"
+          placeholder="이름"
+          onChange={changeName}
+        />
+        <input
+          className={styles.input}
+          type="text"
+          name="id"
+          placeholder="이메일"
+          onChange={changeEmail}
+        />
         <input
           className={styles.input}
           type="password"
@@ -89,7 +102,9 @@ const Join = () => {
           placeholder="비밀번호 확인"
           onChange={changePwCheck}
         />
-        {password !== pwcheck && <span className={styles.pwCheck}>비밀번호가 일치하지 않습니다.</span>}
+        {password !== pwcheck && (
+          <span className={styles.pwCheck}>비밀번호가 일치하지 않습니다.</span>
+        )}
         <RoundButton type="submit" text="완료" />
       </form>
     </div>

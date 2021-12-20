@@ -1,0 +1,14 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar {
+  width: 28rem;
+  height: 60rem;
+  display: flex;
+  flex-direction: column;
+}

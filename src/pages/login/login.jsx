@@ -6,8 +6,8 @@ import LoginIcon from "../../common/images/login_character.jpeg";
 import KakaoIcon from "../../common/images/kakao_icon.png";
 import NaverIcon from "../../common/images/naver_icon.png";
 import styles from "./login.module.css";
-import RoundButton from "../../components/buttons/round_button";
-import LoadSpinner from "../../components/loadSpinner/loadSpinner";
+import RoundButton from "../../components/common/buttons/round_button";
+import LoadSpinner from "../../components/common/loadSpinner/loadSpinner";
 
 function Login({ getLoginInfo }) {
   const formRef = useRef();
@@ -73,8 +73,6 @@ function Login({ getLoginInfo }) {
         {loading && <LoadSpinner />}
         <section className={styles.logo}>
           <h1 className={styles.title}>로그인</h1>
-          <img src={LoginIcon} width="80" height="110" alt="title" />
-          <span>독비에 오신걸 환영합니다!</span>
         </section>
         <form
           ref={formRef}
@@ -86,7 +84,7 @@ function Login({ getLoginInfo }) {
           <input className={styles.input} type="text" name="id" placeholder="아이디" onChange={onChangeUsername} />
           <input
             className={styles.input}
-            type="text"
+            type="password"
             name="password"
             placeholder="비밀번호"
             onChange={onChangePassword}
@@ -95,6 +93,7 @@ function Login({ getLoginInfo }) {
             비밀번호를 잊으셨나요?
           </span>
           <RoundButton type="submit" text="로그인" />
+
           <span className={styles.login_line}></span>
           <div className={styles.social_title}>간편 로그인</div>
         </form>
