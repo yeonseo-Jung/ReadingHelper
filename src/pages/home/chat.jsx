@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
 import styles from "./chat.module.css";
 import Chatbot from "../../common/images/dogIcon.png";
-import ChatService from "../../service/chat_service";
+import ChatService from "../../service/chatService";
 const Chat = (props) => {
   const { user: currentUser } = useSelector((state) => state.auth);
 
