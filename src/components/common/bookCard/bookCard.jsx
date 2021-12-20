@@ -11,7 +11,7 @@ const BookCard = ({ book, state }) => {
   };
   const { title, thumbnail } = book;
   return (
-    <li className={styles.book} onClick={goToDetail}>
+    <li className={styles.container} onClick={goToDetail}>
       <div className={styles.container}>
         <img src={thumbnail} alt="" />
         <h5>{title}</h5>

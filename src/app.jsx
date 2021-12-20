@@ -34,13 +34,13 @@ const App = ({ kakaoSearch, library }) => {
               <Home />
             </Route>
             <Route exact path="/library">
-              <Library library={library} />
+              <Library library={library} kakaoSearch={kakaoSearch} />
             </Route>
             <Route exact path="/report">
               <Report />
             </Route>
             <Route exact path="/calendar">
-              <Calendar />
+              <Calendar library={library} />
             </Route>
             <Route exact path="/search">
               <SearchResult query={word} books={books} onSearch={onSearch} />

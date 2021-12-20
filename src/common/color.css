@@ -12,7 +12,11 @@
 @value makerColorful: linear-gradient(166deg, rgba(237, 193, 211, 1) 0%,rgba(212, 149, 161, 1) 60%, rgba(162, 63, 63, 1) 100%, rgba(127, 188, 242, 1) 100%);
 @value makerWheat: wheat;
 @value makerLightYellow: #fdd45a;
-@value makerYellow: #FDBF00;
-@value makerOrange:#FF9F00;
-@value makerLightPurple:#D9B5FF;
-@value makerPurple:#BA77FF;
+
+@value subColor: #FDBF00;
+@value subPointColor:#FF9F00;
+
+@value mainColor:#D9B5FF;
+@value mainPointColor:#BA77FF;
+
+@value mainTrans:rgba(217, 181, 255,0.4);

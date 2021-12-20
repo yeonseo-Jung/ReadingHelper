@@ -19,12 +19,21 @@ const BookDetail = ({ library }) => {
   const author = authors.length > 0 ? authors.join(", ") : "";
   const translator = translators.length > 0 ? translators.join(", ") : "";
 
-  const saveBook = async () => {
-    const newBook = { ...book };
-    newBook["authors"] = author;
-    newBook["translators"] = translator;
+  const saveBook = async (readDate, memo, state) => {
+    const newBook = { ...book, readDate, memo };
+    const arr = newBook["isbn"].split(" ");
+    newBook["isbn"] = arr[1];
     const res = await library.saveBook(newBook);
-    alert("내서재에 담겼습니다!");
+    switch (state) {
+      case "library":
+        alert("내서재에 담겼습니다!");
+        break;
+      case "calendar":
+        alert("독서달력에 저장했습니다!");
+        break;
+      default:
+        break;
+    }
   };
 
   useEffect(() => {
@@ -68,13 +77,17 @@ const BookDetail = ({ library }) => {
       <div className={styles.buttons}>
         {state === "library" && (
           <div>
-            <button>다 읽었어요!</button>
+            <button onClick={() => saveBook(new Date(), "", "calendar")}>
+              다 읽었어요!
+            </button>
             <button>독후감 작성</button>
           </div>
         )}
         {state === "search" && (
           <div>
-            <button onClick={saveBook}>내서재 담기</button>
+            <button onClick={() => saveBook("", "", "library")}>
+              내서재 담기
+            </button>
             <button>독후감 작성</button>
           </div>
         )}

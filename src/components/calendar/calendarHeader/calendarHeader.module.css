@@ -1,9 +1,29 @@
+@value subColor,mainColor,mainPointColor from "../../../common/color.css";
+
 .header {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.btn {
-  cursor: pointer;
-  background: transparent;
+.text {
+  font-family: "CookieRun";
+}
+.year {
+  color: mainColor;
+  margin: 0;
+}
+.month {
+  color: mainPointColor;
+  font-size: 4rem;
+  margin: 0.3rem 1rem 1rem 1rem;
+}
+.divider {
+  width: 2rem;
+  height: 2px;
+  background-color: subColor;
+}
+.buttons {
+  display: flex;
 }
 
 .btn_img {

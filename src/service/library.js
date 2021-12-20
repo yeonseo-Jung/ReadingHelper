@@ -7,8 +7,12 @@ class Library {
     });
   }
 
-  async loadBooks() {
+  async loadLibrary() {
     const response = await this.library.get("/mylib", { params: { id: 1 } });
+    return response;
+  }
+  async loadCalendar() {
+    const response = await this.library.get("/calendar", { params: { id: 1 } });
     return response;
   }
   async saveBook(book) {
@@ -17,6 +21,7 @@ class Library {
     });
     return response;
   }
+  async saveCalendar() {}
 }
 
 export default Library;
