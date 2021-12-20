@@ -10,6 +10,8 @@ import SearchResult from "./pages/search/search";
 import BookDetail from "./pages/bookDetail/bookDetail";
 import Login from "./pages/login/login";
 import Join from "./pages/join/join";
+import Profile from "./pages/profile/profile";
+import ProfileEdit from "./pages/profile/profileEdit";
 import SocialLogin from "./components/socialLogin/socialLogin";
 
 const App = ({ kakaoSearch, library }) => {
@@ -51,17 +53,13 @@ const App = ({ kakaoSearch, library }) => {
             <Route exact path="/login">
               <Login />
             </Route>
-            <Route
-              path="/login/callback/naver/"
-              render={() => <SocialLogin type="naver" />}
-            />
-            <Route
-              path="/login/callback/kakao/"
-              render={() => <SocialLogin type="kakao" />}
-            />
+            <Route path="/login/callback/naver/" render={() => <SocialLogin type="naver" />} />
+            <Route path="/login/callback/kakao/" render={() => <SocialLogin type="kakao" />} />
             <Route exact path="/join">
               <Join />
             </Route>
+            <Route exact path="/profile" render={() => <Profile />} />
+            <Route exact path="/profile/edit" render={() => <ProfileEdit />} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 1rem;
 }
 
 .logo {
@@ -40,6 +39,9 @@
   border-color: makerYellow;
 }
 
+.input:focus {
+  outline: none;
+}
 .forgetPW {
   cursor: pointer;
   margin-top: 1rem;
@@ -59,8 +61,8 @@
 .social_title::after {
   content: "";
   flex-grow: 1;
-  background: makerLightGrey;
-  height: 1.3px;
+  background: makerYellow;
+  height: 1px;
   font-size: 0px;
   line-height: 0px;
 }
