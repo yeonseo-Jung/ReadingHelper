@@ -6,6 +6,7 @@ import thumbnailImg from "../../common/images/thumbnail.png";
 const BookDetail = ({ library }) => {
   const history = useHistory();
   const historyState = history?.location?.state;
+
   const bookItem = historyState.book;
   const state = historyState.state;
 

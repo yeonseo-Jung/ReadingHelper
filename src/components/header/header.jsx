@@ -8,7 +8,7 @@ import logoIcon from "../../common/images/logo-3.png";
 import myPage from "../../common/images/profile.png";
 import { logout } from "../../actions/auth";
 
-const Header = ({ onSearch }) => {
+const Header = ({ onSearch, initBooks }) => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -18,7 +18,9 @@ const Header = ({ onSearch }) => {
         {currentUser ? (
           <ul className={styles.buttons}>
             <li>
-              <span className={styles.userName}>{currentUser.name || "사용자"}님 환영합니다👋</span>
+              <span className={styles.userName}>
+                {currentUser.name || "사용자"}님 환영합니다👋
+              </span>
             </li>
             <li className={styles.button}>
               <Link to="/profile">
@@ -75,7 +77,7 @@ const Header = ({ onSearch }) => {
         </Link>
       </header>
       <div className={styles.searchBar}>
-        <SearchBar onSearch={onSearch} />
+        <SearchBar onSearch={onSearch} initBooks={initBooks} />
       </div>
     </header>
   );

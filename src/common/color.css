@@ -20,3 +20,6 @@
 @value mainPointColor:#BA77FF;
 
 @value mainTrans:rgba(217, 181, 255,0.4);
+
+@value makerGreyTrans:rgba(247, 247, 247);
+@value makerYellowTrans:rgba(255, 253, 240);
