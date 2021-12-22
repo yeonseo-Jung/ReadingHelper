@@ -13,7 +13,7 @@ import BubbleChat from "./bubbleChat";
 
 const Chat = (props) => {
   const { user: currentUser } = useSelector((state) => state.auth);
-  const { isSelectBook, selectedBook, questionList } = useSelector((state) => state.chat);
+  const { isSelectBook, selectedBook, questionList, chatId } = useSelector((state) => state.chat);
   const dispatch = useDispatch();
 
   // 유저 uid가 없기 때문에 이메일의 @ 앞 문자열을 임시 uid로 설정했습니다.
@@ -25,7 +25,7 @@ const Chat = (props) => {
   const formRef = useRef();
   const chatRef = useRef();
 
-  console.log("책 선택했나요?:", isSelectBook, "책:", selectedBook);
+  console.log("책 선택했나요?:", isSelectBook, "책:", selectedBook, "채팅 아이디:", chatId);
   console.log("질문 리스트:", questionList);
 
   const handleChange = (e) => {
@@ -47,15 +47,14 @@ const Chat = (props) => {
     if (currentUser) {
       // 질문이 남아있다면 사용자 메세지를 저장하고, 질문 리스트 맨 앞 요소를 제거
       if (questionList.length !== 0) {
-        console.log(questionList[0]);
         // 파이어베이스 DB에 채팅을 저장
-        const chatArr = dispatch(sendChat(tempUid, message, questionList));
+        const chatArr = dispatch(sendChat(tempUid, message, questionList, chatId));
         updateChat(chatArr);
       } else {
         // 질문이 남아있지 않지만, 책을 선택했다면 마지막 질문에 대한 답
         if (isSelectBook) {
           // 독후감 채팅이 끝났으므로 모든 state 값 초기화
-          const chatArr = dispatch(doneChat(tempUid, message));
+          const chatArr = dispatch(doneChat(tempUid, message, chatId));
           updateChat(chatArr);
         } else {
           // 책을 선택하지 않고 채팅을 친 경우
@@ -103,7 +102,9 @@ const Chat = (props) => {
     //history.push("/search");
     if (isSelectBook) return;
     if (currentUser) {
-      const chatArr = dispatch(selectBook(tempUid, currentUser.name));
+      // 채팅 묶음을 구별하기 위해 현재 시간을 DB의 chatId로 설정
+      const chatId = Date.now();
+      const chatArr = dispatch(selectBook(tempUid, currentUser.name, chatId));
       console.log("chat:", questionList);
       updateChat(chatArr);
     } else {

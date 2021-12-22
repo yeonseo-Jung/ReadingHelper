@@ -1,10 +1,11 @@
-import { SELECT_BOOK, DONE_REPORT, WRITE_REPORT, MAKE_QUESTION } from "../actions/types";
+import { SELECT_BOOK, DONE_REPORT, MAKE_QUESTION } from "../actions/types";
 
 const questionList = localStorage.getItem("question");
 const selectedBook = localStorage.getItem("selectedBook");
+const chatId = localStorage.getItem("chatId");
 const initialState = questionList
-  ? { isSelectBook: true, selectedBook, questionList }
-  : { isSelectBook: false, selectedBook: null, questionList: [] };
+  ? { isSelectBook: true, selectedBook, questionList, chatId }
+  : { isSelectBook: false, selectedBook: null, questionList: [], chatId: null };
 
 // type에 따른 state 변경 수행
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -13,13 +14,14 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case SELECT_BOOK:
+      console.log(payload);
       return {
         ...state,
         isSelectBook: true,
-        selectedBook: payload,
+        selectedBook: payload.book,
+        chatId: payload.chatId,
       };
     case MAKE_QUESTION:
-      console.log("reducer:", payload);
       return {
         ...state,
         questionList: payload,
@@ -30,6 +32,7 @@ export default function (state = initialState, action) {
         isSelectBook: false,
         selectedBook: null,
         questionList: [],
+        chatId: null,
       };
     default:
       return state;
