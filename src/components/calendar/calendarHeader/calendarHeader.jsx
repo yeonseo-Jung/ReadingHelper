@@ -6,23 +6,27 @@ import arrowLeft from "../../../common/images/arrow_left.png";
 const CalendarHeader = ({ moveMonth, YM }) => {
   return (
     <div className={styles.header}>
-      <button className={styles.btn}>
-        <img
-          className={styles.btn_img}
-          src={arrowLeft}
-          alt="left"
-          onClick={() => moveMonth(-1)}
-        />
-      </button>
-      <h2 className={styles.page}>{YM}</h2>
-      <button className={styles.btn}>
-        <img
-          className={styles.btn_img}
-          src={arrowRight}
-          alt="right"
-          onClick={() => moveMonth(1)}
-        />
-      </button>
+      <h2 className={`${styles.text} ${styles.year}`}>{YM.format("YYYY")}</h2>
+      <div className={styles.divider}></div>
+      <div className={styles.buttons}>
+        <button className={styles.btn}>
+          <img
+            className={styles.btn_img}
+            src={arrowLeft}
+            alt="left"
+            onClick={() => moveMonth(-1)}
+          />
+        </button>
+        <h1 className={`${styles.text} ${styles.month}`}>{YM.format("MM")}</h1>
+        <button className={styles.btn}>
+          <img
+            className={styles.btn_img}
+            src={arrowRight}
+            alt="right"
+            onClick={() => moveMonth(1)}
+          />
+        </button>
+      </div>
     </div>
   );
 };

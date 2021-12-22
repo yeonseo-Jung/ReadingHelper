@@ -1,4 +1,4 @@
-@value makerLightYellow,makerLightPurple,makerBlack,makerPurple from "../../common/color.css";
+@value makerLightYellow,mainColor,makerBlack,makerPurple from "../../common/color.css";
 
 .container {
   width: 100%;
@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: makerLightPurple;
+  background: mainColor;
 }
 .header {
   width: 90%;
@@ -63,7 +63,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 15rem;
+  margin-left: 13rem;
   margin-right: 20rem;
 }
 .menu {

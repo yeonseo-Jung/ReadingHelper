@@ -1,3 +1,5 @@
+@value subColor,subPointColor,mainColor,mainPointColor,makerGrey,makerLightGrey from "../../../common/color.css";
+
 .container {
   width: 4rem;
   height: 5rem;
@@ -7,17 +9,25 @@
   border-right: 0.1rem solid;
   border-bottom: 0.1rem solid;
 }
+
 .day {
-  align-self: end;
-}
-.img {
-  align-self: center;
-}
-.day:hover {
-  background: yellow;
+  color: makerGrey;
+  margin-left: 0.1rem;
+  font-size: 0.8rem;
+  font-family: "CookieRun";
 }
 
 .thumbnail {
-  width: 3rem;
-  height: 4rem;
+  margin-left: 0.2rem;
+  width: 90%;
+}
+
+.sun {
+  color: #ff5f5f;
+}
+.sat {
+  color: #4f9dff;
+}
+.notDay {
+  color: makerLightGrey;
 }

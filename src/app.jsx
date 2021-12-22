@@ -13,11 +13,15 @@ import Join from "./pages/join/join";
 import Profile from "./pages/profile/profile";
 import ProfileEdit from "./pages/profile/profileEdit";
 import SocialLogin from "./components/socialLogin/socialLogin";
+import WriteReport from "./pages/writeReport/writeReport";
 
 const App = ({ kakaoSearch, library }) => {
+  //검색어, 검색 결과 책들
   const [word, setWord] = useState("");
   const [books, setBooks] = useState([]);
-
+  const initBooks = () => {
+    setBooks([]);
+  };
   const onSearch = async (query, page) => {
     setWord(query);
     await kakaoSearch
@@ -29,20 +33,27 @@ const App = ({ kakaoSearch, library }) => {
   return (
     <div className={styles.container}>
       <BrowserRouter>
-        <Header className={styles.header} onSearch={onSearch} />
+        <Header
+          className={styles.header}
+          onSearch={onSearch}
+          initBooks={initBooks}
+        />
         <div className={styles.pages}>
           <Switch>
             <Route exact path="/">
               <Home />
             </Route>
             <Route exact path="/library">
-              <Library library={library} />
+              <Library library={library} kakaoSearch={kakaoSearch} />
             </Route>
             <Route exact path="/report">
               <Report />
             </Route>
+            <Route exact path="/report/write">
+              <WriteReport />
+            </Route>
             <Route exact path="/calendar">
-              <Calendar />
+              <Calendar library={library} />
             </Route>
             <Route exact path="/search">
               <SearchResult query={word} books={books} onSearch={onSearch} />
@@ -53,8 +64,14 @@ const App = ({ kakaoSearch, library }) => {
             <Route exact path="/login">
               <Login />
             </Route>
-            <Route path="/login/callback/naver/" render={() => <SocialLogin type="naver" />} />
-            <Route path="/login/callback/kakao/" render={() => <SocialLogin type="kakao" />} />
+            <Route
+              path="/login/callback/naver/"
+              render={() => <SocialLogin type="naver" />}
+            />
+            <Route
+              path="/login/callback/kakao/"
+              render={() => <SocialLogin type="kakao" />}
+            />
             <Route exact path="/join">
               <Join />
             </Route>

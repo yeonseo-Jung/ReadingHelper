@@ -13,7 +13,9 @@ const SearchResult = ({ query, books, onSearch }) => {
   //새로고침 후에도 검색 결과를 유지
   useEffect(() => {
     console.log("한번");
+    console.log(booklist);
     if (!booklist.length) {
+      console.log("들어옴");
       setBookList(JSON.parse(localStorage.getItem("books")));
       setBookTitle(JSON.parse(localStorage.getItem("query")));
       setPage(JSON.parse(localStorage.getItem("page")));
@@ -44,33 +46,35 @@ const SearchResult = ({ query, books, onSearch }) => {
 
   return (
     <section className={styles.container}>
-      <div>
-        <h3>{`\'${bookTitle}\' 검색 결과`}</h3>
-      </div>
       {booklist.length === 0 ? (
         <h3>검색결과가 없습니다.</h3>
       ) : (
-        <BookList books={booklist} state="search" />
+        <div>
+          <div>
+            <h3>{`\'${bookTitle}\' 검색 결과`}</h3>
+          </div>
+          <BookList books={booklist} state="search" />
+          <div className={styles.move_page}>
+            <button className={styles.btn}>
+              <img
+                className={styles.btn_img}
+                src={arrowLeft}
+                alt="left"
+                onClick={() => movePage(-1)}
+              />
+            </button>
+            <h2 className={styles.page}>{page}</h2>
+            <button className={styles.btn}>
+              <img
+                className={styles.btn_img}
+                src={arrowRight}
+                alt="right"
+                onClick={() => movePage(1)}
+              />
+            </button>
+          </div>
+        </div>
       )}
-      <div className={styles.move_page}>
-        <button className={styles.btn}>
-          <img
-            className={styles.btn_img}
-            src={arrowLeft}
-            alt="left"
-            onClick={() => movePage(-1)}
-          />
-        </button>
-        <h2 className={styles.page}>{page}</h2>
-        <button className={styles.btn}>
-          <img
-            className={styles.btn_img}
-            src={arrowRight}
-            alt="right"
-            onClick={() => movePage(1)}
-          />
-        </button>
-      </div>
     </section>
   );
 };
