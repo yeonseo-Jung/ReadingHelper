@@ -1,22 +1,34 @@
+import ChatItem from "./chatItem";
 import { firebaseDB } from "./firebase";
 
-const sendChat = (data) => {
-  console.log("send", data);
-  const chatArr = [
-    {
-      message: data.message,
-      timestamp: data.timestamp,
-      uid: data.uid,
-      type: "user",
-    },
-    {
-      message: "좋은 하루 보내세요😆🐶",
-      timestamp: data.timestamp + 1,
+const sendChat = (chats) => {
+  const chatArr = new Array();
+  console.log(chats);
+  chats.map((chat) => {
+    console.log(chat.uid);
+    firebaseDB.ref(`chats/${chat.uid}`).push(chat);
+    chatArr.push(chat);
+  });
+
+  return chatArr;
+};
+
+const chatbotChat = (uid, messages) => {
+  const chatArr = new Array();
+  messages.map((message) => {
+    const chat = new ChatItem(message, Date.now, uid, "chatbot");
+    firebaseDB.ref(`chats/${uid}`).push({
+      message,
+      timestamp: Date.now(),
+      uid,
       type: "chatbot",
-    },
-  ];
-  firebaseDB.ref(`chats/${data.uid}`).push(chatArr[0]);
-  firebaseDB.ref(`chats/${data.uid}`).push(chatArr[1]);
+    });
+    chatArr.push(new ChatItem(message, Date.now, uid, "chatbot"));
+  });
+
+  //const chats = new ChatItem("안녕", Date.now(), uid, "chatbot");
+  console.log(chatArr);
+  //firebaseDB.ref(`chats/${uid}`).push(chat);
   return chatArr;
 };
 
@@ -38,4 +50,4 @@ const resetChat = (uid) => {
   const ref = firebaseDB.ref("chats/" + uid).remove();
   return () => ref.off();
 };
-export default { sendChat, receiveChat, resetChat };
+export default { sendChat, receiveChat, resetChat, chatbotChat };
