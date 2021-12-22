@@ -65,8 +65,8 @@ const Chat = (props) => {
       // 로그인 안 한 상태일 때
       // 파이어베이스 DB에 저장을 하지 않고, chats state만 업데이트
       const chatArr = [];
-      chatArr.push(new ChatItem(message, "user"));
-      chatArr.push(new ChatItem("로그인을 하면 저와의 대화가 독후감으로 완성된답니다. 😊", "chatbot"));
+      chatArr.push(new ChatItem(message, "", "user"));
+      chatArr.push(new ChatItem("로그인을 하면 저와의 대화가 독후감으로 완성된답니다. 😊", "", "chatbot"));
       updateChat(chatArr);
     }
   };
@@ -108,7 +108,7 @@ const Chat = (props) => {
       console.log("chat:", questionList);
       updateChat(chatArr);
     } else {
-      updateChat([new ChatItem("이 뒤의 기능이 궁금하지 않나요? 로그인 해서 이용해보세요! 🙌", "chatbot")]);
+      updateChat([new ChatItem("이 뒤의 기능이 궁금하지 않나요? 로그인 해서 이용해보세요! 🙌", "", "chatbot")]);
     }
   }, [isSelectBook, currentUser, dispatch, questionList, tempUid, updateChat]);
 
