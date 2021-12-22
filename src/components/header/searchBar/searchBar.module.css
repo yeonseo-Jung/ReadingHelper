@@ -1,4 +1,4 @@
-@value makerLightGrey,makerLightPurple from "../../../common/color.css";
+@value makerLightGrey,mainColor from "../../../common/color.css";
 
 .container {
   width: 25rem;
@@ -7,7 +7,7 @@
   justify-content: space-between;
   padding: 0.2rem;
   border-radius: 1rem;
-  border: 3px solid makerLightPurple;
+  border: 3px solid mainColor;
 }
 
 .input {
