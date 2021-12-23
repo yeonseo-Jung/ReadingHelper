@@ -6,7 +6,7 @@ import ChatService from "../../service/chatService";
 import Chatbot from "../../common/images/dogIcon.png";
 import ChatbotChat from "./chatbotChat";
 import UserChat from "./userChat";
-import { doneChat, doneReport, selectBook, sendChat } from "../../actions/chat";
+import { doneChat, doneReport, makeReport, selectBook, sendChat } from "../../actions/chat";
 import ChatItem from "../../service/chatItem";
 import chat from "../../reducers/chat";
 import BubbleChat from "./bubbleChat";
@@ -24,9 +24,6 @@ const Chat = (props) => {
   const history = useHistory();
   const formRef = useRef();
   const chatRef = useRef();
-
-  console.log("책 선택했나요?:", isSelectBook, "책:", selectedBook, "채팅 아이디:", chatId);
-  console.log("질문 리스트:", questionList);
 
   const handleChange = (e) => {
     setMessage(e.target.value);
@@ -54,21 +51,28 @@ const Chat = (props) => {
         // 질문이 남아있지 않지만, 책을 선택했다면 마지막 질문에 대한 답
         if (isSelectBook) {
           // 독후감 채팅이 끝났으므로 모든 state 값 초기화
-          const chatArr = dispatch(doneChat(tempUid, message, chatId));
+          const chatArr = dispatch(doneChat(chats, tempUid, message, chatId));
           updateChat(chatArr);
+          dispatch(makeReport(chats.concat(chatArr), (reportArr) => goToReport(reportArr)));
         } else {
           // 책을 선택하지 않고 채팅을 친 경우
-          updateChat([new ChatItem("책을 선택해야 저와 대화할 수 있어요😎", "", "book")]);
+          updateChat([new ChatItem("", "책을 선택해야 저와 대화할 수 있어요😎", "book")]);
         }
       }
     } else {
       // 로그인 안 한 상태일 때
       // 파이어베이스 DB에 저장을 하지 않고, chats state만 업데이트
       const chatArr = [];
-      chatArr.push(new ChatItem(message, "", "user"));
-      chatArr.push(new ChatItem("로그인을 하면 저와의 대화가 독후감으로 완성된답니다. 😊", "", "chatbot"));
+      chatArr.push(new ChatItem(message, "user"));
+      chatArr.push(new ChatItem("로그인을 하면 저와의 대화가 독후감으로 완성된답니다. 😊", "chatbot"));
       updateChat(chatArr);
     }
+  };
+
+  // 채팅이 끝나면 생성한 독후감 페이지로 이동한다.
+  const goToReport = (reportArr) => {
+    console.log(reportArr);
+    //history.push({ pathname: "/report", state: { report: reportArr } });
   };
 
   // 새로운 채팅 내용으로 채팅 view를 변환하기 위함
@@ -108,7 +112,7 @@ const Chat = (props) => {
       console.log("chat:", questionList);
       updateChat(chatArr);
     } else {
-      updateChat([new ChatItem("이 뒤의 기능이 궁금하지 않나요? 로그인 해서 이용해보세요! 🙌", "", "chatbot")]);
+      updateChat([new ChatItem("이 뒤의 기능이 궁금하지 않나요? 로그인 해서 이용해보세요! 🙌", "chatbot")]);
     }
   }, [isSelectBook, currentUser, dispatch, questionList, tempUid, updateChat]);
 
@@ -123,6 +127,9 @@ const Chat = (props) => {
       dispatch(doneReport());
       return () => stopSync();
     }
+
+    console.log("책 선택했나요?:", isSelectBook, "책:", selectedBook, "채팅 아이디:", chatId);
+    console.log("질문 리스트:", questionList);
     // 로그인 안 한 경우: state만 삭제
     setChats([]);
   };

@@ -3,11 +3,11 @@ import { firebaseDB } from "./firebase";
 // 파이어베이스 DB에 채팅 저장, uid/chatId(책 버튼을 누른 시간)으로 저장됨.
 // 독후감 작성시 대화 묶음을 구별하기 위함
 const sendChat = (chats, chatId) => {
-  const chatArr = new Array();
-  console.log(chatId);
+  const ref = firebaseDB.ref(`chats/${chats[0].uid}/${chatId}`);
+  const chatArr = [];
+  console.log(chats);
   chats.map((chat) => {
-    console.log(chat.uid);
-    firebaseDB.ref(`chats/${chat.uid}/${chatId}`).push(chat);
+    ref.push(chat);
     chatArr.push(chat);
   });
 
@@ -31,9 +31,21 @@ const receiveChat = (uid, onUpdate) => {
   return () => ref.off();
 };
 
+const makeReport = (uid, chatId) => {
+  console.log(chatId);
+  const reportList = [];
+  const ref = firebaseDB.ref(`chats/${uid}/${chatId}`);
+  ref.once("value", (snapshot) => {
+    snapshot.forEach((item) => {
+      reportList.push(item.val());
+    });
+    console.log(reportList);
+  });
+};
+
 // 초기화시 메세지 모두 삭제
 const resetChat = (uid) => {
   const ref = firebaseDB.ref("chats/" + uid).remove();
   return () => ref.off();
 };
-export default { sendChat, receiveChat, resetChat };
+export default { sendChat, receiveChat, resetChat, makeReport };

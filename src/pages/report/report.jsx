@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import BookList from "../../components/common/bookList/bookList";
 import styles from "./report.module.css";
 const Report = ({ library, kakaoSearch }) => {
   const [books, setBooks] = useState([]);
   const history = useHistory();
+  const location = useLocation();
 
   const deleteBook = (isbn) => {};
   const goToWrite = () => {
@@ -12,6 +13,11 @@ const Report = ({ library, kakaoSearch }) => {
       pathname: "/report/write",
     });
   };
+  console.log(location.state);
+  useEffect(() => {
+    console.log(location.state);
+    setBooks(location.state.report);
+  }, [location.state]);
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>독후감</h1>
