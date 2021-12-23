@@ -1,0 +1,7 @@
+@value makerLightPurple from "../../common/color.css";
+
+.box {
+  width: 10rem;
+  height: 10rem;
+  background-color: makerLightPurple;
+}

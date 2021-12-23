@@ -1,0 +1,22 @@
+.container {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.move_page {
+  align-self: center;
+  display: flex;
+  margin: 1rem 0;
+}
+.page {
+  margin: 0 2rem;
+}
+.btn {
+  cursor: pointer;
+  background: transparent;
+}
+
+.btn_img {
+  width: 2rem;
+}

@@ -1,34 +1,32 @@
-# Frontend
+# 독서 비서 웹 (Reading Helper)
 
 ## Tech
 
-React Hook, Material-UI, SCSS, MVC pattern
+React Hook, Redux, PostCSS
 
 ## Start
 
 remove package-lock.json
 
 ```sh
-npm install
-npm start
+yarn install
+yarn start
 ```
 
 ## Structure
 
 - 📁 frontend
-  - 📁 components [페이지 내에서 사용될 컴포넌트 폴더]
+  - 📁 common [페이지 내에서 공통으로 사용하는 이미지, 폰트, css 등]
+  - 📁 components [페이지 내에서 사용될 컴포넌트]
   - 📁 pages [각 페이지의 View를 구성하는 폴더]
-  - 📁 scss [컴포넌트, 페이지에 필요한 스타일 시트 폴더]
-    - 📁 base
-    - 📁 components
-    - 📁 pages
-    - 📄 main.scss (인덱스 파일)
+  - 📁 service [백엔드와의 통신과 관련된 폴더]
+  - 📁 actions [Redux 상태 관리와 연관된 폴더]
+  - 📁 reducers [Redux 상태 관리와 연관된 폴더]
   - 📄 package.json
-  - 📄 App.js [해당 파일에서부터 링크별로 페이지가 Routing 됩니다.]
-  - 📄 Root.js
+  - 📄 app.jsx [해당 파일에서부터 링크별로 페이지가 Routing 됩니다.]
 
 ## 규칙
 
-- index.js (인덱스 파일): 각 폴더마다 이 파일에 인덱스를 지정해야 외부에서 import 할 수 있습니다.
-- scss파일은 파일명 맨 앞에 언더바(\_)를 붙여줍니다.
-- js파일에서 className=""을 활용해 scss에 접근합니다.
+- 카멜 표기법 사용
+- 코드는 본인 Repository에 push 한 후 Pull Request 올려서 팀원들에게 피드백 받기!
+- Pull Request 제목 형식: [기능] 기능 설명

@@ -97,7 +97,7 @@ public class UserController {
         userInfo.put("accessToken", "forweber_token");
         /*
         여기서부터는 DB 연동 필요해서 주석처리!
-        
+
         // 유저의 이메일, 비밀번호가 DB에 있는지 확인:
         User user = userService.checkLogin(email, pw);
         System.out.println("userinfo: " + user);
