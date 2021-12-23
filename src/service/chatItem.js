@@ -1,8 +1,8 @@
 export default class ChatItem {
-  constructor(message, uid, type) {
+  constructor(message, type, uid) {
+    this.type = type;
     this.message = message;
     this.timestamp = Date.now();
-    this.uid = uid;
-    this.type = type;
+    this.uid = uid || "";
   }
 }
