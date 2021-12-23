@@ -13,11 +13,11 @@ const Report = ({ library, kakaoSearch }) => {
       pathname: "/report/write",
     });
   };
-  console.log(location.state);
-  useEffect(() => {
-    console.log(location.state);
-    setBooks(location.state.report);
-  }, [location.state]);
+  // console.log(location.state);
+  // useEffect(() => {
+  //   console.log(location.state);
+  //   setBooks(location.state.report);
+  // }, [location.state]);
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>독후감</h1>
