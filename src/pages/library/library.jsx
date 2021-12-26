@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import BookList from "../../components/common/bookList/bookList";
 import styles from "./library.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { setPageFrom, setPageNow } from "../../actions/page";
+
 const Library = ({ library, kakaoSearch }) => {
   const [books, setBooks] = useState([]);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const getBooks = async () => {
       const response = await library.loadLibrary();
@@ -13,7 +18,7 @@ const Library = ({ library, kakaoSearch }) => {
     };
     getBooks();
   }, []);
-  useEffect(() => {}, []);
+
   const deleteBook = async (id) => {
     console.log(typeof id);
     await library.deleteBook(id);
@@ -29,7 +34,7 @@ const Library = ({ library, kakaoSearch }) => {
       {books.length !== 0 ? (
         <BookList
           books={books}
-          state="library"
+          state={"library"}
           deleteBook={deleteBook}
           kakaoSearch={kakaoSearch}
         />

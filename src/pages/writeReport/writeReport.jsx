@@ -1,19 +1,37 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
 import RoundButton from "../../components/common/buttons/round_button";
 import styles from "./writeReport.module.css";
+import { setPage } from "../../actions/page";
 const WriteReport = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const historyState = history?.location?.state;
   const book = historyState !== undefined ? historyState.book : null;
+  console.log(book);
 
-  const [title, setTitle] = useState(book !== null ? book.title : "");
+  const [title, setTitle] = useState(
+    book !== null
+      ? book.title !== undefined
+        ? book.title
+        : book.book_title
+      : ""
+  );
   const [thumbnail, setThumbnail] = useState(
-    book !== null ? book.thumbnail : ""
+    book !== null
+      ? book.thumbnail !== undefined
+        ? book.thumbnail
+        : book.book_thumbnail
+      : ""
   );
 
   const goToLibrary = () => {
     alert("Library");
+    dispatch(setPage("report"));
+    history.push({
+      pathname: "/library",
+    });
   };
   const goToSearch = () => {
     alert("Search");

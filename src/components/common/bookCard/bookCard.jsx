@@ -1,16 +1,26 @@
 import React from "react";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 import styles from "./bookCard.module.css";
-const BookCard = ({ book, state, deleteBook, kakaoSearch }) => {
+const BookCard = ({ book, deleteBook, kakaoSearch, state }) => {
   const history = useHistory();
+  useSelector((state) => console.log(state));
+
+  const { page } = useSelector((state) => state.page);
   const goToDetail = async () => {
     console.log("click");
-    if (state === "search") {
+    console.log(page);
+    if (page === "report") {
+      history.push({
+        pathname: "/report/write",
+        state: { book },
+      });
+    } else if (state === "search") {
       history.push({
         pathname: "/detail",
         state: { book, state },
       });
-    } else {
+    } else if (state === "library") {
       await kakaoSearch
         .search(book.book_isbn, 1) //
         .then((books) => {
