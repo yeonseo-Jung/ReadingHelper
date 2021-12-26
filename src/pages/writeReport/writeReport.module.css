@@ -3,14 +3,25 @@
 .container {
   display: flex;
 }
+
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.thumbnail {
+  padding: 1rem;
+  width: 12rem;
+  height: 17rem;
+  margin-right: 1rem;
+}
 .buttons {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: makerLightGrey;
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
 }
 
 .form {

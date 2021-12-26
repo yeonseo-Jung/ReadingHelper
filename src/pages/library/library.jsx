@@ -6,22 +6,33 @@ const Library = ({ library, kakaoSearch }) => {
   useEffect(() => {
     const getBooks = async () => {
       const response = await library.loadLibrary();
+      console.log(response);
       const result = response.data;
-      const arr = [];
-      for (let i = 0; i < result.length; i++) {
-        const res = await kakaoSearch.search(result[i].isbn, 1);
-        arr.push(res.data.documents[0]);
-      }
-      setBooks(arr);
+      console.log(result);
+      setBooks(result);
     };
     getBooks();
   }, []);
-  const deleteBook = (isbn) => {};
+  useEffect(() => {}, []);
+  const deleteBook = async (id) => {
+    console.log(typeof id);
+    await library.deleteBook(id);
+    const response = await library.loadLibrary();
+    console.log(response);
+    const result = response.data;
+    console.log(result);
+    setBooks(result);
+  };
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>내서재</h1>
       {books.length !== 0 ? (
-        <BookList books={books} state="library" deleteBook={deleteBook} />
+        <BookList
+          books={books}
+          state="library"
+          deleteBook={deleteBook}
+          kakaoSearch={kakaoSearch}
+        />
       ) : (
         <h1 className={styles.empty}>내 서재 비어있음</h1>
       )}

@@ -13,11 +13,15 @@ import BubbleChat from "./bubbleChat";
 
 const Chat = (props) => {
   const { user: currentUser } = useSelector((state) => state.auth);
-  const { isSelectBook, selectedBook, questionList, chatId } = useSelector((state) => state.chat);
+  const { isSelectBook, selectedBook, questionList, chatId } = useSelector(
+    (state) => state.chat
+  );
   const dispatch = useDispatch();
 
   // 유저 uid가 없기 때문에 이메일의 @ 앞 문자열을 임시 uid로 설정했습니다.
-  const [tempUid, setTempUid] = useState((currentUser && currentUser.email.split("@")[0]) || "");
+  const [tempUid, setTempUid] = useState(
+    (currentUser && currentUser.email.split("@")[0]) || ""
+  );
   const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
 
@@ -25,7 +29,14 @@ const Chat = (props) => {
   const formRef = useRef();
   const chatRef = useRef();
 
-  console.log("책 선택했나요?:", isSelectBook, "책:", selectedBook, "채팅 아이디:", chatId);
+  console.log(
+    "책 선택했나요?:",
+    isSelectBook,
+    "책:",
+    selectedBook,
+    "채팅 아이디:",
+    chatId
+  );
   console.log("질문 리스트:", questionList);
 
   const handleChange = (e) => {
@@ -48,7 +59,9 @@ const Chat = (props) => {
       // 질문이 남아있다면 사용자 메세지를 저장하고, 질문 리스트 맨 앞 요소를 제거
       if (questionList.length !== 0) {
         // 파이어베이스 DB에 채팅을 저장
-        const chatArr = dispatch(sendChat(tempUid, message, questionList, chatId));
+        const chatArr = dispatch(
+          sendChat(tempUid, message, questionList, chatId)
+        );
         updateChat(chatArr);
       } else {
         // 질문이 남아있지 않지만, 책을 선택했다면 마지막 질문에 대한 답
@@ -58,7 +71,9 @@ const Chat = (props) => {
           updateChat(chatArr);
         } else {
           // 책을 선택하지 않고 채팅을 친 경우
-          updateChat([new ChatItem("책을 선택해야 저와 대화할 수 있어요😎", "", "book")]);
+          updateChat([
+            new ChatItem("책을 선택해야 저와 대화할 수 있어요😎", "", "book"),
+          ]);
         }
       }
     } else {
@@ -66,7 +81,13 @@ const Chat = (props) => {
       // 파이어베이스 DB에 저장을 하지 않고, chats state만 업데이트
       const chatArr = [];
       chatArr.push(new ChatItem(message, "", "user"));
-      chatArr.push(new ChatItem("로그인을 하면 저와의 대화가 독후감으로 완성된답니다. 😊", "", "chatbot"));
+      chatArr.push(
+        new ChatItem(
+          "로그인을 하면 저와의 대화가 독후감으로 완성된답니다. 😊",
+          "",
+          "chatbot"
+        )
+      );
       updateChat(chatArr);
     }
   };
@@ -108,7 +129,13 @@ const Chat = (props) => {
       console.log("chat:", questionList);
       updateChat(chatArr);
     } else {
-      updateChat([new ChatItem("이 뒤의 기능이 궁금하지 않나요? 로그인 해서 이용해보세요! 🙌", "", "chatbot")]);
+      updateChat([
+        new ChatItem(
+          "이 뒤의 기능이 궁금하지 않나요? 로그인 해서 이용해보세요! 🙌",
+          "",
+          "chatbot"
+        ),
+      ]);
     }
   }, [isSelectBook, currentUser, dispatch, questionList, tempUid, updateChat]);
 
@@ -145,24 +172,50 @@ const Chat = (props) => {
 
   return (
     <div className={styles.container}>
-      <header className={styles.header}>채팅으로 독후감을 작성해보세요 :)</header>
+      <header className={styles.header}>
+        채팅으로 독후감을 작성해보세요 :)
+      </header>
       <div className={styles.chatSection} ref={chatRef}>
         <div className={styles.chatbotSection} ref={chatRef}>
-          <img className={styles.chatbot} src={Chatbot} width="60" height="60" alt="chatbot" />
+          <img
+            className={styles.chatbot}
+            src={Chatbot}
+            width="60"
+            height="60"
+            alt="chatbot"
+          />
           <li className={styles.chatbotMsg}>
             <span className={styles.chatbotName}>독서 비서</span>
-            <span className={styles.msg}>안녕하세요. 저는 당신의 독서 비서랍니다😄</span>
+            <span className={styles.msg}>
+              안녕하세요. 저는 당신의 독서 비서랍니다😄
+            </span>
           </li>
         </div>
-        <BubbleChat message={"읽은 책을 선택해보세요!"} handleSearch={handleSearch} />
+        <BubbleChat
+          message={"읽은 책을 선택해보세요!"}
+          handleSearch={handleSearch}
+        />
         {Object.keys(chats).map((key) => {
           switch (chats[key].type) {
             case "user":
               return <UserChat key={key} message={chats[key].message} />;
             case "chatbot":
-              return <ChatbotChat ref={chatRef} key={key} message={chats[key].message} />;
+              return (
+                <ChatbotChat
+                  ref={chatRef}
+                  key={key}
+                  message={chats[key].message}
+                />
+              );
             case "book":
-              return <BubbleChat ref={chatRef} key={key} message={chats[key].message} handleSearch={handleSearch} />;
+              return (
+                <BubbleChat
+                  ref={chatRef}
+                  key={key}
+                  message={chats[key].message}
+                  handleSearch={handleSearch}
+                />
+              );
             case "bubble":
               return (
                 <BubbleChat
@@ -179,7 +232,12 @@ const Chat = (props) => {
           }
         })}
       </div>
-      <form ref={formRef} className={styles.chatForm} onSubmit={handleSubmit} onKeyPress={handleKeyPress}>
+      <form
+        ref={formRef}
+        className={styles.chatForm}
+        onSubmit={handleSubmit}
+        onKeyPress={handleKeyPress}
+      >
         <button className={styles.resetBtn} onClick={handleReset}>
           초기화
         </button>

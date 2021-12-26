@@ -6,6 +6,7 @@ import thumbnailImg from "../../common/images/thumbnail.png";
 const BookDetail = ({ library }) => {
   const history = useHistory();
   const historyState = history?.location?.state;
+  console.log(historyState);
 
   const bookItem = historyState.book;
   const state = historyState.state;
@@ -20,10 +21,24 @@ const BookDetail = ({ library }) => {
   const author = authors.length > 0 ? authors.join(", ") : "";
   const translator = translators.length > 0 ? translators.join(", ") : "";
 
-  const saveBook = async (readDate, memo, state) => {
-    const newBook = { ...book, readDate, memo };
-    const arr = newBook["isbn"].split(" ");
-    newBook["isbn"] = arr[1];
+  useEffect(() => {
+    if (book.length) {
+      localStorage.setItem("book", JSON.stringify(book));
+    }
+  }, [book]);
+
+  const saveBook = async (readDate, state) => {
+    //const newBook = { ...book, readDate, memo:"" };
+    const isbn = book["isbn"].split(" ")[1];
+    const newBook = {
+      book_title: title,
+      book_thumbnail: thumbnail,
+      book_isbn: isbn,
+      read_date: readDate,
+      memo: "",
+      user_id: 1,
+    };
+
     const res = await library.saveBook(newBook);
     switch (state) {
       case "library":
@@ -37,12 +52,12 @@ const BookDetail = ({ library }) => {
     }
   };
 
-  useEffect(() => {
-    if (book.length) {
-      localStorage.setItem("book", JSON.stringify(book));
-    }
-  }, [book]);
-
+  const goToReport = () => {
+    history.push({
+      pathname: "/report/write",
+      state: { book },
+    });
+  };
   return (
     <section className={styles.container}>
       <h2>{title}</h2>
@@ -78,7 +93,7 @@ const BookDetail = ({ library }) => {
       <div className={styles.buttons}>
         {state === "library" && (
           <div>
-            <button onClick={() => saveBook(new Date(), "", "calendar")}>
+            <button onClick={() => saveBook(new Date(), "calendar")}>
               다 읽었어요!
             </button>
             <button>독후감 작성</button>
@@ -86,10 +101,10 @@ const BookDetail = ({ library }) => {
         )}
         {state === "search" && (
           <div>
-            <button onClick={() => saveBook("", "", "library")}>
+            <button onClick={() => saveBook(new Date(), "library")}>
               내서재 담기
             </button>
-            <button>독후감 작성</button>
+            <button onClick={() => goToReport()}>독후감 작성</button>
           </div>
         )}
       </div>
