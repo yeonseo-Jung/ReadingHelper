@@ -1,25 +1,34 @@
 import axios from "axios";
-
+import api from "../api";
 class Library {
-  constructor() {
-    this.library = axios.create({
-      baseURL: "http://localhost:8080",
-    });
-  }
-
   async loadLibrary() {
-    const response = await this.library.get("/mylib", { params: { id: 1 } });
+    const response = await api.get("/library");
+    console.log(response.data);
     return response;
   }
   async loadCalendar() {
-    const response = await this.library.get("/calendar", { params: { id: 1 } });
+    const response = await axios.get("/calendar", { params: { id: 1 } });
     return response;
   }
   async saveBook(book) {
-    const response = await this.library.post("/book_info", {
-      params: book,
-    });
-    return response;
+    console.log(book);
+    try {
+      const response = await api.post("/library", book);
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.error(error.response.data);
+    }
+  }
+  async deleteBook(bookId) {
+    console.log(bookId);
+    try {
+      const response = await api.delete("/library", { data: { bookId } });
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.error(error.response.data);
+    }
   }
   async saveCalendar() {}
 }

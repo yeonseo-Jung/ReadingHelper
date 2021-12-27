@@ -2,11 +2,17 @@ import React from "react";
 import BookCard from "../bookCard/bookCard";
 import styles from "./bookList.module.css";
 
-const BookList = ({ books, state, deleteBook }) => {
+const BookList = ({ books, deleteBook, kakaoSearch, state }) => {
   return (
     <ul className={styles.container}>
       {books.map((book, i) => (
-        <BookCard key={i} book={book} state={state} deleteBook={deleteBook} />
+        <BookCard
+          key={i}
+          book={book}
+          state={state}
+          deleteBook={deleteBook}
+          kakaoSearch={kakaoSearch}
+        />
       ))}
     </ul>
   );
